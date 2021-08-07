@@ -24,14 +24,14 @@ struct LoginView: View {
                 VStack {
                     TextField("Username", text: $username)
                         .padding(.horizontal)
-                        .padding(.vertical, 30)
+                        .padding(.vertical, 25)
                         .background(Color.gray.opacity(0.6))
                         .cornerRadius(15)
                         .padding(.horizontal)
                         .padding(.vertical, 3)
                     SecureField("Password", text: $password)
                         .padding(.horizontal)
-                        .padding(.vertical, 30)
+                        .padding(.vertical, 25)
                         .background(Color.gray.opacity(0.6))
                         .cornerRadius(15)
                         .padding(.horizontal)
@@ -42,8 +42,8 @@ struct LoginView: View {
                         }
                         Button("Create Account") {
                             selection = createTag
-                        }
-                    }
+                        }.padding(.vertical, 1)
+                    }.padding()
                 }
             }
         }.accentColor(.red)

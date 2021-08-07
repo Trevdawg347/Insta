@@ -21,8 +21,7 @@ struct HomeView: View {
                     .font(Font.custom("Futura-Bold", size: 30))
                     .padding(.leading)
             }
-        }
-        
+        }        
     }
 }
 

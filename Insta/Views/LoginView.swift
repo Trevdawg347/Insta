@@ -100,10 +100,10 @@ struct NewAccountView: View {
 }
 
 struct Login_Previews: PreviewProvider {
+    @Environment(\.colorScheme) var currentMode
     static var previews: some View {
-        LoginView()
-            .preferredColorScheme(.light)
-        NewAccountView()
-            .preferredColorScheme(.dark)
+        ForEach(ColorScheme.allCases, id: \.self) { scheme in
+            LoginView().preferredColorScheme(scheme)
+        }
     }
 }

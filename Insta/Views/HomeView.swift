@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @Environment(\.colorScheme) var currentMode
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
-            Color.clear
+            Rectangle()
+                .ignoresSafeArea()
+                .foregroundColor(currentMode == .dark ? Color.black : Color.white)
             VStack {
                 Text("Insta")
                     .font(Font.custom("Futura-Bold", size: 30))

@@ -8,5 +8,5 @@
 import Foundation
 
 class User: ObservableObject {
-    var isSignedIn = Bool()
+    @Published var isSignedIn = Bool()
 }

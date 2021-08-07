@@ -130,6 +130,7 @@ struct NewAccountView: View {
                     .cornerRadius(15)
                     .padding(.horizontal)
                     .padding(.vertical, 3)
+                Spacer()
             }
         }
     }

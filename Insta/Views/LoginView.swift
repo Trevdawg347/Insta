@@ -14,29 +14,33 @@ struct LoginView: View {
     @State var selection: String? = ""
     @EnvironmentObject var user: User
     let createTag = "create"
+    @Environment(\.colorScheme) var currentMode
     
     
     var body: some View {
         NavigationView {
-            
             ZStack {
                 NavigationLink(destination: NewAccountView(),tag: createTag,selection: $selection,label: {})
+                Rectangle()
+                    .ignoresSafeArea()
+                    .foregroundColor(currentMode == .dark ? Color.black : Color.white)
                 VStack {
                     Text("Insta")
                         .font(Font.custom("Futura-Bold", size: 50))
                         .padding()
-                    
+                        .padding(.top, 50)
+                    Spacer(minLength: 50)
                     TextField("Username", text: $username)
                         .padding(.horizontal)
                         .padding(.vertical, 15)
-                        .background(Color.gray.opacity(0.6))
+                        .background(Color.gray.opacity(0.3))
                         .cornerRadius(15)
                         .padding(.horizontal)
                         .padding(.vertical, 3)
                     SecureField("Password", text: $password)
                         .padding(.horizontal)
                         .padding(.vertical, 15)
-                        .background(Color.gray.opacity(0.6))
+                        .background(Color.gray.opacity(0.3))
                         .cornerRadius(15)
                         .padding(.horizontal)
                         .padding(.vertical, 3)
@@ -69,11 +73,13 @@ struct LoginView: View {
                     
                 } //VStack
             } //ZStack
-
+            .navigationBarHidden(true)
+            .onTapGesture {
+                self.hideKeyboard()
+            }
+            
         } //Navigation View
-        .onTapGesture {
-            self.hideKeyboard()
-        }
+        
         .navigationViewStyle(StackNavigationViewStyle())
         .accentColor(.red)
     }

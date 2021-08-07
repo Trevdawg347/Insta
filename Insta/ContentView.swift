@@ -14,6 +14,8 @@ struct ContentView: View {
             ZStack {
                 Text("sup")
             }
+                Text("sup")
+            }
         }
     }
 }

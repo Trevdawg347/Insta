@@ -11,6 +11,7 @@ struct LoginView: View {
     
     @State private var username: String = ""
     @State private var password: String = ""
+    @EnvironmentObject var user: User
     
     
     var body: some View {
@@ -32,7 +33,7 @@ struct LoginView: View {
                     .padding(.vertical, 3)
                 VStack {
                     Button("Login") {
-                        MainView()
+                        user.isSignedIn = true
                     }
                 }
             }

@@ -34,6 +34,9 @@ struct LoginView: View {
                 VStack {
                     Button("Login") {
                         user.isSignedIn = true
+                        Button("Create Account") {
+                            
+                        }
                     }
                 }
             }

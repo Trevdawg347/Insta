@@ -7,17 +7,18 @@
 
 import SwiftUI
 
-struct Main: View {
+struct MainView: View {
     var body: some View {
         TabView {
+            Home()
             
         }
     }
 }
 
 
-struct Main_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        Main()
+        MainView()
     }
 }

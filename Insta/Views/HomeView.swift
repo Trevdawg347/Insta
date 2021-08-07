@@ -11,9 +11,10 @@ struct HomeView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             Color.clear
-            VStack(alignment: .leading) {
+            VStack {
                 Text("Insta")
-                .font(Font.custom("Futura-Bold", size: 30))
+                    .font(Font.custom("Futura-Bold", size: 30))
+                    .padding(.leading)
             }
         }
         

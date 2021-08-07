@@ -32,7 +32,8 @@ struct LoginView: View {
                     .padding(.vertical, 3)
                 VStack {
                     Button("Login") {
-                        
+                        MainView()
+                    }
                 }
             }
         }

@@ -27,7 +27,8 @@ struct MainView: View {
                 ProfileView()
                     .tabItem { Image(systemName: "person.circle") }
                 
-            }.accentColor(.red)
+            }.accentColor(.purple)
+            
         } else {
             LoginView()
         }
@@ -39,5 +40,6 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
             .preferredColorScheme(.dark)
+            .environmentObject(User())
     }
 }

@@ -27,7 +27,7 @@ struct MainView: View {
                 ProfileView()
                     .tabItem { Image(systemName: "person.circle") }
                 
-            }.accentColor(.purple)
+            }.accentColor(.red)
             
         } else {
             LoginView()

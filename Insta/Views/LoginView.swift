@@ -23,7 +23,8 @@ struct LoginView: View {
                 NavigationLink(destination: NewAccountView(),tag: createTag,selection: $selection,label: {})
                 Rectangle()
                     .ignoresSafeArea()
-                    .foregroundColor(currentMode == .dark ? Color.black : Color.white)
+                    .foregroundColor(currentMode == .dark ? Color.black : Color(#colorLiteral(red: 0.8421182632, green: 0.9154698849, blue: 0.9161584973, alpha: 1)))
+                    
                 VStack {
                     Text("Insta")
                         .font(Font.custom("Futura-Bold", size: 50))
@@ -101,7 +102,7 @@ struct NewAccountView: View {
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-            .preferredColorScheme(.dark)
+            .preferredColorScheme(.light)
         NewAccountView()
             .preferredColorScheme(.dark)
     }

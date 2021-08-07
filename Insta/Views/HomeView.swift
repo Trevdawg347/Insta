@@ -10,8 +10,9 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         ZStack {
-            Button("Hi") {
-                
+            VStack(alignment: .leading) {
+                Text("Insta")
+                .font(Font.custom("Futura-Bold", size: 30))
             }
         }
         

@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
+    @EnvironmentObject var user: User
+    
     var body: some View {
         ZStack {
-            HStack {
-                Text("")
+            Button("Sign Out") {
+                user.isSignedIn = false
             }
         }
     }

@@ -23,14 +23,14 @@ struct LoginView: View {
                 NavigationLink(destination: NewAccountView(),tag: createTag,selection: $selection,label: {})
                 Rectangle()
                     .ignoresSafeArea()
-                    .foregroundColor(currentMode == .dark ? Color.black : Color(#colorLiteral(red: 0.8421182632, green: 0.9154698849, blue: 0.9161584973, alpha: 1)))
-                    
+                    .foregroundColor(currentMode == .dark ? Color.black : Color.white)
+                
                 VStack {
+                    Spacer()
                     Text("Insta")
                         .font(Font.custom("Futura-Bold", size: 50))
                         .padding()
                         .padding(.top, 50)
-                    Spacer(minLength: 50)
                     TextField("Username", text: $username)
                         .padding(.horizontal)
                         .padding(.vertical, 15)
@@ -46,12 +46,14 @@ struct LoginView: View {
                         .padding(.horizontal)
                         .padding(.vertical, 3)
                     
+                    Spacer()
+                    
                     ZStack {
                         Rectangle()
                             .foregroundColor(.red)
                             .cornerRadius(15)
-                            .padding(.horizontal, 40)
-                            .padding(.vertical, 40)
+                            .frame(maxWidth: .infinity, maxHeight: 50)
+                            .padding()
                         
                         Text("Login")
                     }
@@ -65,14 +67,10 @@ struct LoginView: View {
                     .onTapGesture {
                         selection = createTag
                     }
-                    
-                    
-                    
-                    
-                    Spacer()
-                        .padding()
+                    .padding(.bottom)
                     
                 } //VStack
+                .padding(.bottom, 25)
             } //ZStack
             .navigationBarHidden(true)
             .onTapGesture {
@@ -105,5 +103,6 @@ struct Login_Previews: PreviewProvider {
         ForEach(ColorScheme.allCases, id: \.self) { scheme in
             LoginView().preferredColorScheme(scheme)
         }
+        
     }
 }

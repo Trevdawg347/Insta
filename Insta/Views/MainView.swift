@@ -8,20 +8,29 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    @EnvironmentObject var user: User
+    
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem { Image(systemName: "house") }
-            SearchView()
-                .tabItem { Image(systemName: "magnifyingglass") }
-            PostView()
-                .tabItem { Image(systemName: "plus.square") }
-            ActivityView()
-                .tabItem { Image(systemName: "heart") }
-            ProfileView()
-                .tabItem { Image(systemName: "person.circle") }
+        
+        if user.isSignedIn == true {
             
-        }.accentColor(.red)
+            TabView {
+                HomeView()
+                    .tabItem { Image(systemName: "house") }
+                SearchView()
+                    .tabItem { Image(systemName: "magnifyingglass") }
+                PostView()
+                    .tabItem { Image(systemName: "plus.square") }
+                ActivityView()
+                    .tabItem { Image(systemName: "heart") }
+                ProfileView()
+                    .tabItem { Image(systemName: "person.circle") }
+                
+            }.accentColor(.red)
+        } else {
+            LoginView()
+        }
     }
 }
 

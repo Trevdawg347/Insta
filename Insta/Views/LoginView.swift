@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var username: String = ""
+    @State private var email: String = ""
     @State private var password: String = ""
     @State var selection: String? = ""
     @EnvironmentObject var user: User
@@ -31,7 +31,7 @@ struct LoginView: View {
                         .font(Font.custom("Futura-Bold", size: 50))
                         .padding()
                         .padding(.top, 50)
-                    TextField("Username", text: $username)
+                    TextField("Email", text: $email)
                         .padding(.horizontal)
                         .padding(.vertical, 15)
                         .background(Color.gray.opacity(0.3))
@@ -92,8 +92,27 @@ extension View {
 #endif
 
 struct NewAccountView: View {
+    
+    @State private var email = ""
+    @State private var password = ""
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            TextField("Email", text: $email)
+                .padding(.horizontal)
+                .padding(.vertical, 15)
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(15)
+                .padding(.horizontal)
+                .padding(.vertical, 3)
+            SecureField("Password", text: $password)
+                .padding(.horizontal)
+                .padding(.vertical, 15)
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(15)
+                .padding(.horizontal)
+                .padding(.vertical, 3)
+        }
     }
 }
 

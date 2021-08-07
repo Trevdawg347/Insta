@@ -119,9 +119,8 @@ struct NewAccountView: View {
 struct Login_Previews: PreviewProvider {
     @Environment(\.colorScheme) var currentMode
     static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self) { scheme in
-            LoginView().preferredColorScheme(scheme)
-        }
+        LoginView()
+        NewAccountView()
         
     }
 }

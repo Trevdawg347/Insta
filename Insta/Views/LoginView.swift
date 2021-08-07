@@ -11,36 +11,42 @@ struct LoginView: View {
     
     @State private var username: String = ""
     @State private var password: String = ""
+    @State var selection: String? = ""
     @EnvironmentObject var user: User
+    let createTag = "create"
     
     
     var body: some View {
         NavigationView {
-            VStack {
-                TextField("Username", text: $username)
-                    .padding(.horizontal)
-                    .padding(.vertical, 30)
-                    .background(Color.gray.opacity(0.6))
-                    .cornerRadius(15)
-                    .padding(.horizontal)
-                    .padding(.vertical, 3)
-                SecureField("Password", text: $password)
-                    .padding(.horizontal)
-                    .padding(.vertical, 30)
-                    .background(Color.gray.opacity(0.6))
-                    .cornerRadius(15)
-                    .padding(.horizontal)
-                    .padding(.vertical, 3)
+            
+            ZStack {
+                NavigationLink(destination: NewAccountView(),tag: createTag,selection: $selection,label: {})
                 VStack {
-                    Button("Login") {
-                        user.isSignedIn = true
+                    TextField("Username", text: $username)
+                        .padding(.horizontal)
+                        .padding(.vertical, 30)
+                        .background(Color.gray.opacity(0.6))
+                        .cornerRadius(15)
+                        .padding(.horizontal)
+                        .padding(.vertical, 3)
+                    SecureField("Password", text: $password)
+                        .padding(.horizontal)
+                        .padding(.vertical, 30)
+                        .background(Color.gray.opacity(0.6))
+                        .cornerRadius(15)
+                        .padding(.horizontal)
+                        .padding(.vertical, 3)
+                    VStack {
+                        Button("Login") {
+                            user.isSignedIn = true
+                        }
                         Button("Create Account") {
-                            
+                            selection = createTag
                         }
                     }
                 }
             }
-        }
+        }.accentColor(.red)
     }
 }
 struct NewAccountView: View {

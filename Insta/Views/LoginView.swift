@@ -22,31 +22,56 @@ struct LoginView: View {
             ZStack {
                 NavigationLink(destination: NewAccountView(),tag: createTag,selection: $selection,label: {})
                 VStack {
+                    Text("Insta")
+                        .font(Font.custom("Futura-Bold", size: 50))
+                        .padding()
+                    
                     TextField("Username", text: $username)
                         .padding(.horizontal)
-                        .padding(.vertical, 25)
+                        .padding(.vertical, 15)
                         .background(Color.gray.opacity(0.6))
                         .cornerRadius(15)
                         .padding(.horizontal)
                         .padding(.vertical, 3)
                     SecureField("Password", text: $password)
                         .padding(.horizontal)
-                        .padding(.vertical, 25)
+                        .padding(.vertical, 15)
                         .background(Color.gray.opacity(0.6))
                         .cornerRadius(15)
                         .padding(.horizontal)
                         .padding(.vertical, 3)
-                    VStack {
-                        Button("Login") {
-                            user.isSignedIn = true
-                        }
-                        Button("Create Account") {
-                            selection = createTag
-                        }.padding(.vertical, 1)
-                    }.padding()
-                }
-            }
-        }.accentColor(.red)
+                    
+                    ZStack {
+                        Rectangle()
+                            .foregroundColor(.red)
+                            .cornerRadius(15)
+                            .padding(.horizontal, 40)
+                            .padding(.vertical, 40)
+                        
+                        Text("Login")
+                    }
+                    .onTapGesture {
+                        user.isSignedIn = true
+                    }
+                    ZStack {
+                        Text("Create Account")
+                            .foregroundColor(.red)
+                    }
+                    .onTapGesture {
+                        selection = createTag
+                    }
+                    
+                    
+                    
+                    
+                    Spacer()
+                        .padding()
+                    
+                } //VStack
+            } //ZStack
+        } //Navigation View
+        .navigationViewStyle(StackNavigationViewStyle())
+        .accentColor(.red)
     }
 }
 struct NewAccountView: View {

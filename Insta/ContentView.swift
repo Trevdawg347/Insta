@@ -11,7 +11,9 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("Hello")
-            Text("Dudeimcoolasdf")
+            ZStack {
+                Text("sup")
+            }
         }
     }
 }

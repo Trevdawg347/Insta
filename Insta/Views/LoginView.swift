@@ -17,6 +17,7 @@ struct LoginView: View {
     @Environment(\.colorScheme) var currentMode
     
     
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -95,6 +96,8 @@ struct NewAccountView: View {
     
     @State private var email = ""
     @State private var password = ""
+    @State private var firstName = ""
+    @State private var lastName = ""
     
     var body: some View {
         VStack {
@@ -106,6 +109,20 @@ struct NewAccountView: View {
                 .padding(.horizontal)
                 .padding(.vertical, 3)
             SecureField("Password", text: $password)
+                .padding(.horizontal)
+                .padding(.vertical, 15)
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(15)
+                .padding(.horizontal)
+                .padding(.vertical, 3)
+            TextField("First Name", text: $firstName)
+                .padding(.horizontal)
+                .padding(.vertical, 15)
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(15)
+                .padding(.horizontal)
+                .padding(.vertical, 3)
+            TextField("Last Name", text: $lastName)
                 .padding(.horizontal)
                 .padding(.vertical, 15)
                 .background(Color.gray.opacity(0.3))

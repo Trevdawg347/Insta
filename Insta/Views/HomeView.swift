@@ -10,12 +10,11 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         ZStack {
-            VStack(alignment: .leading) {
+            VStack {
                 Text("Insta")
                 .font(Font.custom("Futura-Bold", size: 30))
             }
         }
-        
     }
 }
 

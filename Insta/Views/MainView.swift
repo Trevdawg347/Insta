@@ -11,8 +11,17 @@ struct MainView: View {
     var body: some View {
         TabView {
             HomeView()
+                .tabItem { Image(systemName: "house") }
+            SearchView()
+                .tabItem { Image(systemName: "magnifyingglass") }
+            PostView()
+                .tabItem { Image(systemName: "plus.square") }
+            ActivityView()
+                .tabItem { Image(systemName: "heart") }
+            ProfileView()
+                .tabItem { Image(systemName: "person.circle") }
             
-        }
+        }.accentColor(.red)
     }
 }
 
@@ -20,5 +29,6 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .preferredColorScheme(.dark)
     }
 }

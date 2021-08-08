@@ -20,27 +20,30 @@ struct HomeView: View {
                 HStack {
                     Text("Insta")
                         .font(Font.custom("Futura-Bold", size: 30))
-                        .padding(.leading)
-                        .padding(.top)
                     Spacer()
                     Image(systemName: "ellipsis.bubble")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height: 30)
-                        .padding(.trailing, 30)
-                        .padding(.top)
                 }
-                .ignoresSafeArea()
+                
+                Rectangle()
+                    .foregroundColor(.gray)
+                    .frame(maxWidth: .infinity, maxHeight: 1)
+                
+
+                
                 
                 ScrollView {
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(0..<10) { users in
-                                Circle()
-                                    .frame(width: 50, height: 50)
-                                    .foregroundColor(.red)
-                                    .padding(.bottom)
+                                Image(systemName: "person.circle")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 60, height: 60)
                                     .padding(.leading)
+                                    .foregroundColor(.red)
                             }
                         }
                     }

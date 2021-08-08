@@ -11,6 +11,10 @@ struct HomeView: View {
     
     @Environment(\.colorScheme) var currentMode
     @State private var selection: String? = ""
+    @EnvironmentObject var user: User
+    init() {
+        UITableView.appearance().contentInset.top = -35
+    }
     
     var body: some View {
         NavigationView {
@@ -49,11 +53,34 @@ struct HomeView: View {
                                         .resizable()
                                         .scaledToFill()
                                         .frame(width: 60, height: 60)
-                                        .padding(.vertical)
+                                        .padding(.top)
                                         .padding(.leading)
                                         .foregroundColor(.red)
                                 }
                             }
+                        }
+                        ForEach(user.posts, id: \.id) { post in
+                            List {
+                                HStack {
+                                    Image(systemName: "person.circle")
+                                    Text("Username")
+                                }
+                                Image(uiImage: post.image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 310, height: 310)
+                                HStack {
+                                    Image(systemName: "heart")
+                                    Image(systemName: "bubble.left")
+                                    Text("0 Likes")
+                                    Text("0 Comments")
+                                }
+                                if post.caption != "" {
+                                    Text(post.caption)
+                                }
+                            }
+                            .listStyle(GroupedListStyle())
+                            .frame(height: 500)
                         }
                     }
                 }
@@ -67,5 +94,6 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
             .preferredColorScheme(.dark)
+            .environmentObject(User())
     }
 }

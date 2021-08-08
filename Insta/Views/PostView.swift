@@ -15,6 +15,7 @@ struct PostView: View {
     @Environment(\.colorScheme) var currentMode
     @State var showImagePicker: Bool = false
     @State var image: UIImage?
+    @EnvironmentObject var user: User
     
     var body: some View {
         NavigationView {
@@ -49,7 +50,14 @@ struct PostView: View {
                             if image != nil {
                                 Image(uiImage: image!)
                                     .resizable()
-                                    .scaledToFit()
+                                    .scaledToFill()
+                                    .frame(width: 310, height: 310)
+                                HStack {
+                                    Image(systemName: "heart")
+                                    Image(systemName: "bubble.left")
+                                    Text("0 Likes")
+                                    Text("0 Comments")
+                                }
                             }
                             if caption != "" {
                                 Text(caption)
@@ -59,6 +67,10 @@ struct PostView: View {
                     }
                     
                     Button("Share") {
+                        if image != nil {
+                            user.posts.append(Posts(image: image!, caption: caption))
+                            self.hideKeyboard()
+                        }
                         
                     }
                     .padding(.top)
@@ -68,9 +80,11 @@ struct PostView: View {
                     ImagePickerView(sourceType: .photoLibrary) { image in
                         self.image = image
                     }
+                    .preferredColorScheme(.dark)
                 }
                 
-            }
+            } // ZStack
+
             .navigationTitle("New Post")
             .navigationBarTitleDisplayMode(.inline)
         }

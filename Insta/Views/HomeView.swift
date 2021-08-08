@@ -87,6 +87,7 @@ struct HomeView: View {
             
             .navigationBarHidden(true)
         } // NavigationView
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

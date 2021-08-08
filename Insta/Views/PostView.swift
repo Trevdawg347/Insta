@@ -66,14 +66,22 @@ struct PostView: View {
                         
                     } // Form
                     
-                    Button("Share") {
+                    Button(action: {
                         if image != nil {
                             user.posts.append(Posts(image: image!, caption: caption))
                             self.hideKeyboard()
                         }
-                        
-                    }
-                    .padding(.top)
+                    }, label: {
+                        ZStack {
+                            Rectangle()
+                                .foregroundColor(.red)
+                                .cornerRadius(15)
+                                .frame(maxWidth: .infinity, maxHeight: 50)
+                                .padding()
+                            Text("Share")
+                                .foregroundColor(.white)
+                        }
+                    })
                     .padding(.bottom, 40)
                 }
                 .sheet(isPresented: $showImagePicker) {
@@ -86,8 +94,8 @@ struct PostView: View {
 
             .navigationTitle("New Post")
             .navigationBarTitleDisplayMode(.inline)
-        }
-        .accentColor(.red)
+        } //NavigationView
+        .navigationViewStyle(StackNavigationViewStyle())
         
     }
 }

@@ -36,11 +36,11 @@ struct ProfileView: View {
                         }
                         Spacer()
                         VStack {
-                            Button("Followers") {
+                            Button("Following") {
                                 user.isSignedIn = false
                             }
                             .foregroundColor(.red)
-                            Button(String(followers)) {
+                            Button(String(following)) {
                                 user.isSignedIn = false
                             }
                             .foregroundColor(.red)
@@ -98,7 +98,8 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         
-        ProfileView().preferredColorScheme(.dark)
+        ProfileView()
+            .preferredColorScheme(.dark)
         
         
     }

@@ -9,19 +9,24 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @State private var settingsList: [String] = [
-        "Change Username", "Help", "Logout"
-    ]
+    @EnvironmentObject private var user: User
     
     var body: some View {
-        List {
-            ForEach(settingsList, id: \.self) { index in
-                HStack {
-                    NavigationLink(destination: Text(index),label: {
-                        Text(index)
+        NavigationView {
+            List {
+                NavigationLink(destination: ChangeUsernameView(), label: {
+                    Text("Change Username")
+                })
+                NavigationLink(destination: ChangeBioView() ,label: {
+                        Text("Change Bio")
                     })
-                    .foregroundColor(.red)
+                NavigationLink(destination: HelpView(), label: {
+                        Text("Help")
+                    })
+                Button("Logout") {
+                    user.isSignedIn = false
                 }
+                .foregroundColor(.blue)
             }
         }
         .navigationTitle("Settings")
@@ -29,11 +34,32 @@ struct SettingsView: View {
     }
 }
 
-struct ChangeUsername: View {
+
+struct ChangeUsernameView: View {
+    
+    @State private var newUsername: String = ""
+    
     var body: some View {
-        
-        Text("ChangeUsernameView")
-        
+        VStack {
+            TextField("New Username", text: $newUsername)
+            Text("Save")
+                
+        }
+    }
+}
+
+struct HelpView: View {
+    var body: some View {
+        Text("Here is your help.")
+    }
+}
+
+struct ChangeBioView: View {
+    
+    @State private var changeBio: String = ""
+    
+    var body: some View {
+        TextField("Change Bio", text: $changeBio)
     }
 }
 
@@ -41,9 +67,9 @@ struct ChangeUsername: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            SettingsView().preferredColorScheme(.dark)
-        }
+        SettingsView()
+            .preferredColorScheme(.dark)
+            .environmentObject(User())
         
     }
 }

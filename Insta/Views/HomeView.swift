@@ -16,6 +16,10 @@ struct HomeView: View {
             Rectangle()
                 .ignoresSafeArea()
                 .foregroundColor(currentMode == .dark ? Color.black : Color.white)
+            Rectangle()
+                .foregroundColor(.gray)
+                .frame(maxWidth: .infinity, maxHeight: 1)
+                .padding(.top, 60)
             VStack {
                 HStack {
                     Text("Insta")
@@ -26,13 +30,7 @@ struct HomeView: View {
                         .scaledToFit()
                         .frame(width: 30, height: 30)
                 }
-                
-                Rectangle()
-                    .foregroundColor(.gray)
-                    .frame(maxWidth: .infinity, maxHeight: 1)
-                
-
-                
+                .padding(.horizontal)
                 
                 ScrollView {
                     ScrollView(.horizontal) {
@@ -42,6 +40,7 @@ struct HomeView: View {
                                     .resizable()
                                     .scaledToFill()
                                     .frame(width: 60, height: 60)
+                                    .padding(.vertical)
                                     .padding(.leading)
                                     .foregroundColor(.red)
                             }

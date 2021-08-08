@@ -32,20 +32,13 @@ struct LoginView: View {
                         .font(Font.custom("Futura-Bold", size: 50))
                         .padding()
                         .padding(.top, 50)
-                    TextField("Email", text: $email)
-                        .padding(.horizontal)
-                        .padding(.vertical, 15)
-                        .background(Color.gray.opacity(0.3))
-                        .cornerRadius(15)
-                        .padding(.horizontal)
-                        .padding(.vertical, 3)
-                    SecureField("Password", text: $password)
-                        .padding(.horizontal)
-                        .padding(.vertical, 15)
-                        .background(Color.gray.opacity(0.3))
-                        .cornerRadius(15)
-                        .padding(.horizontal)
-                        .padding(.vertical, 3)
+                    Form {
+                        
+                        TextField("Email", text: $email)
+
+                        SecureField("Password", text: $password)
+
+                    }
                     
                     Spacer()
                     
@@ -92,7 +85,7 @@ struct NewAccountView: View {
     @State private var password = ""
     @State private var firstName = ""
     @State private var lastName = ""
-    @State private var createAccount = ""
+    @State private var username = ""
     @Environment(\.colorScheme) private var currentMode
     @EnvironmentObject var user: User
     
@@ -104,18 +97,21 @@ struct NewAccountView: View {
                 .foregroundColor(currentMode == .dark ? Color.black : Color(red: 0.95, green: 0.95, blue: 0.95))
             VStack {
                 Form {
+                    Section(header: Text("Username")) {
+                        TextField("Username", text: $username)
+                    }
                     Section(header: Text("NAME")) {
-                        TextField("First Name", text: $firstName).padding(10)
-                        TextField("Last Name", text: $lastName).padding(10)
+                        TextField("First Name", text: $firstName)
+                        TextField("Last Name", text: $lastName)
                     }
                     
                     
                     Section(header: Text("Email")) {
-                        TextField("Email", text: $email).padding(10)
+                        TextField("Email", text: $email)
                     }
                     
                     Section(header: Text("Password")) {
-                        SecureField("Password", text: $password).padding(10)
+                        SecureField("Password", text: $password)
                     }
                     
                     

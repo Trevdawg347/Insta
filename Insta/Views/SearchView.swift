@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct SearchView: View {
+    @State private var search = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            TextField("Search", text: $search)
+                .padding(.horizontal)
+                .padding(.vertical, 10)
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(15)
+                .padding(.horizontal)
+                .padding(.vertical, 3)
+        }
     }
 }
 

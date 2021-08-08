@@ -16,8 +16,6 @@ struct LoginView: View {
     let createTag = "create"
     @Environment(\.colorScheme) var currentMode
     
-    
-    
     var body: some View {
         NavigationView {
             ZStack {

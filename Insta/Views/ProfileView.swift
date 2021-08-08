@@ -29,7 +29,7 @@ struct ProfileView: View {
                     HStack(alignment: .top) {
                         ZStack(alignment: .bottomTrailing) {
                             Image(systemName: "plus.circle.fill")
-                                .foregroundColor(.blue)
+                                .foregroundColor(.red)
                             Image(systemName: "person.circle")
                                 .resizable()
                                 .frame(width: 100, height: 100)
@@ -91,10 +91,10 @@ struct ProfileView: View {
                 }
                 
             }.navigationBarHidden(true)
-    } // NavigationView
-    .navigationViewStyle(StackNavigationViewStyle())
-    
-}
+        } // NavigationView
+        .navigationViewStyle(StackNavigationViewStyle())
+        
+    }
 }
 
 struct ProfileView_Previews: PreviewProvider {

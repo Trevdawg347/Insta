@@ -24,8 +24,7 @@ struct SettingsView: View {
             })
             Button("Logout") {
                 user.isSignedIn = false
-            }
-            .foregroundColor(.blue)
+            }            
         }
         .navigationTitle("Settings")
         .listStyle(GroupedListStyle())

@@ -17,14 +17,12 @@ struct SettingsView: View {
     
     var body: some View {
         List {
-            NavigationLink(destination: Text("New"), tag: tags, selection: $selection, label: {})
+            
             ForEach(settingsList, id: \.self) { index in
                 HStack {
-                    Button(index) {
-                        selection = tags
-                    }
-                    Spacer()
-                    Image(systemName: "arrow.right")
+                    NavigationLink(destination: Text(index),label: {
+                        Text(index)
+                        })
                 }
             }
         }

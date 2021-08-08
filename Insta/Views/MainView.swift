@@ -43,5 +43,6 @@ struct MainView_Previews: PreviewProvider {
                 .preferredColorScheme(scheme)
                 .environmentObject(User())
         }
+        .previewDevice("iPad (8th generation)")
     }
 }

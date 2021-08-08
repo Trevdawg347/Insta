@@ -12,17 +12,15 @@ struct SettingsView: View {
     @State private var settingsList: [String] = [
         "Change Username", "Help", "Logout"
     ]
-    @State private var selection: String? = ""
-    @State private var tags: String = "tags"
     
     var body: some View {
         List {
-            
             ForEach(settingsList, id: \.self) { index in
                 HStack {
                     NavigationLink(destination: Text(index),label: {
                         Text(index)
-                        })
+                    })
+                    .foregroundColor(.red)
                 }
             }
         }
@@ -31,10 +29,20 @@ struct SettingsView: View {
     }
 }
 
+struct ChangeUsername: View {
+    var body: some View {
+        
+        Text("ChangeUsernameView")
+        
+    }
+}
+
+
+
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SettingsView()
+            SettingsView().preferredColorScheme(.dark)
         }
         
     }

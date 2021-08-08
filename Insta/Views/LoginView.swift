@@ -24,7 +24,7 @@ struct LoginView: View {
                 NavigationLink(destination: NewAccountView(),tag: createTag,selection: $selection,label: {})
                 Rectangle()
                     .ignoresSafeArea()
-                    .foregroundColor(currentMode == .dark ? Color.black : Color.white)
+                    .foregroundColor(currentMode == .dark ? Color.black : Color(red: 0.95, green: 0.95, blue: 0.95))
                 
                 VStack {
                     Spacer()

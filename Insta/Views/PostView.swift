@@ -16,6 +16,7 @@ struct PostView: View {
     @State var showImagePicker: Bool = false
     @State var image: UIImage?
     @EnvironmentObject var user: User
+    @Binding var tabSelection: Int
     
     var body: some View {
         NavigationView {
@@ -59,9 +60,10 @@ struct PostView: View {
                                     Text("0 Likes")
                                     Text("0 Comments")
                                 }
-                            }
-                            if caption != "" {
-                                Text(caption)
+                                
+                                if caption != "" {
+                                    Text(caption)
+                                }
                             }
                         }
                         
@@ -75,6 +77,7 @@ struct PostView: View {
                             caption = ""
                             showComments = true
                             showLikes = true
+                            tabSelection = 1
                         }
                     }, label: {
                         ZStack {
@@ -108,7 +111,7 @@ struct PostView: View {
 struct PostView_Previews: PreviewProvider {
     @Binding var tabSelection: Int
     static var previews: some View {
-        PostView()
+        PostView(tabSelection: .constant(3))
             .preferredColorScheme(.dark)
     }
 }

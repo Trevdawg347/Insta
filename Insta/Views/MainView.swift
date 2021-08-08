@@ -21,7 +21,7 @@ struct MainView: View {
                     .tabItem { Image(systemName: "house") }.tag(1)
                 SearchView()
                     .tabItem { Image(systemName: "magnifyingglass") }.tag(2)
-                PostView()
+                PostView(tabSelection: $tabSelection)
                     .tabItem { Image(systemName: "plus.square") }.tag(3)
                 ActivityView()
                     .tabItem { Image(systemName: "heart") }.tag(4)

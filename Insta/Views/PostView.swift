@@ -70,6 +70,10 @@ struct PostView: View {
                         if image != nil {
                             user.posts.append(Posts(image: image!, caption: caption))
                             self.hideKeyboard()
+                            image = nil
+                            caption = ""
+                            showComments = true
+                            showLikes = true
                         }
                     }, label: {
                         ZStack {

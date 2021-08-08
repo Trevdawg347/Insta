@@ -103,38 +103,45 @@ struct NewAccountView: View {
     @EnvironmentObject var user: User
     
     var body: some View {
-        VStack {
-            Form {
-                Section(header: Text("NAME")) {
-                    TextField("First Name", text: $firstName).padding(10)
-                    TextField("Last Name", text: $lastName).padding(10)
+        
+        ZStack {
+            Rectangle()
+                .ignoresSafeArea()
+                .foregroundColor(currentMode == .dark ? Color.black : Color(red: 0.95, green: 0.95, blue: 0.95))
+            VStack {
+                Form {
+                    Section(header: Text("NAME")) {
+                        TextField("First Name", text: $firstName).padding(10)
+                        TextField("Last Name", text: $lastName).padding(10)
+                    }
+                    
+                    
+                    Section(header: Text("Email")) {
+                        TextField("Email", text: $email).padding(10)
+                    }
+                    
+                    Section(header: Text("Password")) {
+                        SecureField("Password", text: $password).padding(10)
+                    }
+                    
+                    
+                    
                 }
                 
-                
-                Section(header: Text("Email")) {
-                    TextField("Email", text: $email).padding(10)
-                }
-                
-                Section(header: Text("Password")) {
-                    SecureField("Password", text: $password).padding(10)
-                }
-                
-                
+                Button(action: { user.isSignedIn = true }, label: {
+                    ZStack {
+                        Rectangle()
+                            .foregroundColor(.red)
+                            .cornerRadius(15)
+                            .frame(maxWidth: .infinity, maxHeight: 50)
+                            .padding()
+                        Text("Create Account")
+                            .foregroundColor(.white)
+                    }
+                })
             }
-            
-            Button(action: { user.isSignedIn = true }, label: {
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(.red)
-                        .cornerRadius(15)
-                        .frame(maxWidth: .infinity, maxHeight: 50)
-                        .padding()
-                    Text("Create Account")
-                        .foregroundColor(.white)
-                }
-            })
+            .navigationTitle("New Account")
         }
-        .navigationTitle("New Account")
         
     }
 }

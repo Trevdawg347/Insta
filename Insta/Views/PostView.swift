@@ -46,8 +46,9 @@ struct PostView: View {
                             
                             
                         }
-                        Section(header: Text("Preview")) {
-                            if image != nil {
+                        
+                        if image != nil {
+                            Section(header: Text("Preview")) {
                                 Image(uiImage: image!)
                                     .resizable()
                                     .scaledToFill()
@@ -95,7 +96,7 @@ struct PostView: View {
                 }
                 
             } // ZStack
-
+            
             .navigationTitle("New Post")
             .navigationBarTitleDisplayMode(.inline)
         } //NavigationView

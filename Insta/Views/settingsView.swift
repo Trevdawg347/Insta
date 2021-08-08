@@ -58,7 +58,7 @@ struct ChangeBioView: View {
     
     var body: some View {
         Section(header: Text("New Username")) {
-            TextField("Username", text: $newUsername)
+            TextField("Username", text: $changeBio)
         }
     }
 }

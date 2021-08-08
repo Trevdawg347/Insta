@@ -26,7 +26,7 @@ struct HomeView: View {
                     .ignoresSafeArea()
                     .foregroundColor(currentMode == .dark ? Color.black : Color.white)
                 Rectangle()
-                    .foregroundColor(.gray)
+                    .foregroundColor(.white)
                     .frame(maxWidth: .infinity, maxHeight: 1)
                     .padding(.top, 60)
                 VStack {
@@ -45,7 +45,7 @@ struct HomeView: View {
                     }
                     .padding(.horizontal)
                     
-                    ScrollView {
+                    List {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(0..<10) { users in
@@ -53,42 +53,41 @@ struct HomeView: View {
                                         .resizable()
                                         .scaledToFill()
                                         .frame(width: 60, height: 60)
-                                        .padding(.top)
                                         .padding(.leading)
+                                        .padding(.vertical, 5)
                                         .foregroundColor(.red)
+                                        
                                 }
                             }
                         }
                         ForEach(user.posts, id: \.id) { post in
-                            List {
-                                HStack {
-                                    Image(systemName: "person.circle")
-                                    Text("Username")
-                                }
-                                Image(uiImage: post.image)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 310, height: 310)
-                                HStack {
-                                    Image(systemName: "heart")
-                                    Image(systemName: "bubble.left")
-                                    Text("0 Likes")
-                                    Text("0 Comments")
-                                }
-                                if post.caption != "" {
-                                    Text(post.caption)
-                                }
+                            HStack {
+                                Image(systemName: "person.circle")
+                                Text("Username")
                             }
-                            .listStyle(GroupedListStyle())
-                            .frame(height: 500)
+                            Image(uiImage: post.image)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 310, height: 310)
+                            HStack {
+                                Image(systemName: "heart")
+                                Image(systemName: "bubble.left")
+                                Text("0 Likes")
+                                Text("0 Comments")
+                            }
+                            if post.caption != "" {
+                                Text(post.caption)
+                            }
                         }
                     }
+                    .listStyle(GroupedListStyle())
                 }
-                .navigationBarHidden(true)
             }
+            .navigationBarHidden(true)
         }
     }
 }
+
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

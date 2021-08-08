@@ -43,6 +43,7 @@ struct SearchView: View {
                         ForEach(0..<51) { index in
                             Rectangle()
                                 .frame(height: 150)
+                                .foregroundColor(.gray)
                             
                         }
                     }
@@ -52,6 +53,8 @@ struct SearchView: View {
         }
     }
 }
+
+
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {

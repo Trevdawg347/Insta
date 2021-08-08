@@ -13,6 +13,8 @@ struct PostView: View {
     @State private var showComments = true
     @State private var showLikes = true
     @Environment(\.colorScheme) var currentMode
+    @State var showImagePicker: Bool = false
+    @State var image: UIImage?
     
     var body: some View {
         NavigationView {
@@ -24,6 +26,7 @@ struct PostView: View {
                     Form {
                         Section(header: Text("Image")) {
                             Button("Select Image...") {
+                                showImagePicker.toggle()
                                 
                             }
                             .foregroundColor(currentMode == .dark ? Color.white : Color.black)
@@ -32,29 +35,46 @@ struct PostView: View {
                         
                         Section(header: Text("Caption")) {
                             TextEditor(text: $caption)
-                                                    
+                            
                         }
                         Section(header: Text("Settings")) {
                             Toggle("Allow Comments", isOn: $showComments)
                                 .toggleStyle(SwitchToggleStyle(tint: Color.red))
                             Toggle("Show Like Count", isOn: $showLikes)
                                 .toggleStyle(SwitchToggleStyle(tint: Color.red))
-
-                                                    
+                            
+                            
                         }
-      
+                        Section(header: Text("Preview")) {
+                            if image != nil {
+                                Image(uiImage: image!)
+                                    .resizable()
+                                    .scaledToFit()
+                            }
+                            if caption != "" {
+                                Text(caption)
+                            }
+                        }
+                        
                     }
                     
                     Button("Share") {
                         
                     }
-                    .padding(.bottom, 30)
+                    .padding(.top)
+                    .padding(.bottom, 40)
+                }
+                .sheet(isPresented: $showImagePicker) {
+                    ImagePickerView(sourceType: .photoLibrary) { image in
+                        self.image = image
+                    }
                 }
                 
             }
             .navigationTitle("New Post")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .accentColor(.red)
         
     }
 }
@@ -62,5 +82,6 @@ struct PostView: View {
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
         PostView()
+            .preferredColorScheme(.dark)
     }
 }

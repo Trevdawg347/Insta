@@ -14,6 +14,7 @@ struct ProfileView: View {
     @State private var following: Int = 0
     @State private var selection: String? = ""
     @State private var tags: String = "tag"
+    @State private var settingsTag: String = "tags"
     
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: nil, alignment: nil),
@@ -54,11 +55,16 @@ struct ProfileView: View {
                         .foregroundColor(.red)
                     }
                     Spacer()
-                    Image(systemName: "gearshape.fill")
-                        .resizable()
-                        .frame(width: 35, height: 35)
+                    NavigationLink(destination: settingsView(), tag:settingsTag, selection:$selection, label: {})
+                    Button(action: {
+                        selection = settingsTag
+                    }, label: {
+                        Image(systemName: "gearshape.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                    })
                 }.padding()
-                NavigationLink(destination: Text("New Screen"), tag: tags, selection: $selection, label: {})
+                NavigationLink(destination: Text("Edit Profile"), tag: tags, selection: $selection, label: {})
                 Button(action: {
                     selection = tags
                 }, label: {
@@ -85,6 +91,7 @@ struct ProfileView: View {
         }.navigationBarHidden(true)
     }
 }
+
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {

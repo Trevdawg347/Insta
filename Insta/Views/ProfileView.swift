@@ -91,9 +91,10 @@ struct ProfileView: View {
                 }
                 
             }.navigationBarHidden(true)
-        } // NavigationView
-        .navigationViewStyle(StackNavigationViewStyle())
-    }
+    } // NavigationView
+    .navigationViewStyle(StackNavigationViewStyle())
+    
+}
 }
 
 struct ProfileView_Previews: PreviewProvider {

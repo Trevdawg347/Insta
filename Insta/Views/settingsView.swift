@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct settingsView: View {
+struct SettingsView: View {
     
     @State private var settingsList: [String] = [
         "Change Username", "Help", "Logout"
@@ -33,10 +33,10 @@ struct settingsView: View {
     }
 }
 
-struct settingsView_Previews: PreviewProvider {
+struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            settingsView()
+            SettingsView()
         }
         
     }

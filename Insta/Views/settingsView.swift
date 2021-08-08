@@ -38,10 +38,17 @@ struct ChangeUsernameView: View {
     @State private var newUsername: String = ""
     
     var body: some View {
+        ZStack {
             Form {
                 Section(header: Text("New Username")) {
                     TextField("Username", text: $newUsername)
+                    
                 }
+                
+            }
+            .onTapGesture {
+                self.hideKeyboard()
+            }
         }
     }
 }
@@ -57,10 +64,19 @@ struct ChangeBioView: View {
     @State private var changeBio: String = ""
     
     var body: some View {
-        Section(header: Text("New Username")) {
-            TextField("Username", text: $changeBio)
+        ZStack {
+            
+            Form {
+                Section(header: Text("New Bio")) {
+                TextField("Change Bio", text: $changeBio)
+            }
+            .onTapGesture {
+                self.hideKeyboard()
         }
+            }
+            
     }
+}
 }
 
 

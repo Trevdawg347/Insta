@@ -55,7 +55,7 @@ struct ProfileView: View {
                         .foregroundColor(.red)
                     }
                     Spacer()
-                    NavigationLink(destination: settingsView(), tag:settingsTag, selection:$selection, label: {})
+                    NavigationLink(destination: SettingsView(), tag:settingsTag, selection:$selection, label: {})
                     Button(action: {
                         selection = settingsTag
                     }, label: {

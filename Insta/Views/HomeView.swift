@@ -54,7 +54,9 @@ struct HomeView: View {
                                         .scaledToFill()
                                         .frame(width: 60, height: 60)
                                         .padding(.leading)
+                                        .padding(.vertical, 5)
                                         .foregroundColor(.red)
+                                        
                                 }
                             }
                         }

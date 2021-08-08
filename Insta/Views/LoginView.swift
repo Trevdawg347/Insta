@@ -49,18 +49,18 @@ struct LoginView: View {
                     
                     Spacer()
                     
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.red)
-                            .cornerRadius(15)
-                            .frame(maxWidth: .infinity, maxHeight: 50)
-                            .padding()
-                        
-                        Text("Login")
-                    }
-                    .onTapGesture {
-                        user.isSignedIn = true
-                    }
+                    Button(action: { user.isSignedIn = true }, label: {
+                        ZStack {
+                            Rectangle()
+                                .foregroundColor(.red)
+                                .cornerRadius(15)
+                                .frame(maxWidth: .infinity, maxHeight: 50)
+                                .padding()
+                            Text("Login")
+                                .foregroundColor(.white)
+                        }
+                    })
+                    
                     ZStack {
                         Text("Create Account")
                             .foregroundColor(.red)
@@ -104,45 +104,30 @@ struct NewAccountView: View {
     
     var body: some View {
         VStack {
-            TextField("First Name", text: $firstName)
-                .padding(.horizontal)
-                .padding(.vertical, 15)
-                .background(Color.gray.opacity(0.3))
-                .cornerRadius(15)
-                .padding(.horizontal)
-                .padding(.vertical, 3)
-            TextField("Last Name", text: $lastName)
-                .padding(.horizontal)
-                .padding(.vertical, 15)
-                .background(Color.gray.opacity(0.3))
-                .cornerRadius(15)
-                .padding(.horizontal)
-                .padding(.vertical, 3)
-            TextField("Email", text: $email)
-                .padding(.horizontal)
-                .padding(.vertical, 15)
-                .background(Color.gray.opacity(0.3))
-                .cornerRadius(15)
-                .padding(.horizontal)
-                .padding(.vertical, 3)
-            SecureField("Password", text: $password)
-                .padding(.horizontal)
-                .padding(.vertical, 15)
-                .background(Color.gray.opacity(0.3))
-                .cornerRadius(15)
-                .padding(.horizontal)
-                .padding(.vertical, 3)
-            Button("Create Account") {
-                user.isSignedIn = true
+            Form {
+                TextField("First Name", text: $firstName)
+
+                TextField("Last Name", text: $lastName)
+
+                TextField("Email", text: $email)
+
+                SecureField("Password", text: $password)
+
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 50)
-            .background(Color.red)
-            .accentColor(.white)
-            .cornerRadius(15)
-            .padding()
-            Spacer()
-        }.navigationTitle("Create Account")
+            .padding(.top)
+            .navigationTitle("New Account")
+            Button(action: { user.isSignedIn = true }, label: {
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(.red)
+                        .cornerRadius(15)
+                        .frame(maxWidth: .infinity, maxHeight: 50)
+                        .padding()
+                    Text("Create Account")
+                        .foregroundColor(.white)
+                }
+            })
+        }
     }
 }
 

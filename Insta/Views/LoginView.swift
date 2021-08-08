@@ -105,14 +105,16 @@ struct NewAccountView: View {
     var body: some View {
         VStack {
             Form {
+                
                 TextField("First Name", text: $firstName).padding(10)
-
+                
                 TextField("Last Name", text: $lastName).padding(10)
-
+                
                 TextField("Email", text: $email).padding(10)
-
+                
                 SecureField("Password", text: $password).padding(10)
-
+                
+                
             }
             
             Button(action: { user.isSignedIn = true }, label: {
@@ -128,7 +130,8 @@ struct NewAccountView: View {
             })
         }
         .navigationTitle("New Account")
-
+        .navigationBarTitleDisplayMode(.inline)
+        
     }
 }
 

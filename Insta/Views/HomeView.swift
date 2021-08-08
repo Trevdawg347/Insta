@@ -31,11 +31,11 @@ struct HomeView: View {
                             .font(Font.custom("Futura-Bold", size: 30))
                         Spacer()
                         Button(action: { selection = "messageView" }, label: {
-                            Image(systemName: "ellipsis.bubble")
+                            Image(systemName: "bubble.left")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
-                                .foregroundColor(.black)
+                                .foregroundColor(currentMode == .dark ? Color.white : Color.black)
                         })
                         
                     }

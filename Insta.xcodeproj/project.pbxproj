@@ -19,6 +19,7 @@
 		E09D5AAF26BE1EC20012F043 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09D5AAE26BE1EC20012F043 /* PostView.swift */; };
 		E09D5AB326BE251B0012F043 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09D5AB226BE251B0012F043 /* User.swift */; };
 		E0D8F1E526BF6D1F001D2CB6 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D8F1E426BF6D1F001D2CB6 /* MessageView.swift */; };
+		E0D8F1E726BF7D02001D2CB6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D8F1E626BF7D02001D2CB6 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		E09D5AAE26BE1EC20012F043 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		E09D5AB226BE251B0012F043 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E0D8F1E426BF6D1F001D2CB6 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		E0D8F1E626BF7D02001D2CB6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			children = (
 				5240BC8826BE178A000AFFC5 /* InstaApp.swift */,
 				E09D5AB226BE251B0012F043 /* User.swift */,
+				E0D8F1E626BF7D02001D2CB6 /* ImagePicker.swift */,
 				E09D5AA326BE1B700012F043 /* Views */,
 				5240BC8C26BE178B000AFFC5 /* Assets.xcassets */,
 				5240BC9126BE178B000AFFC5 /* Info.plist */,
@@ -179,6 +182,7 @@
 				E09D5AAD26BE1EA30012F043 /* ActivityView.swift in Sources */,
 				E09D5AAB26BE1E980012F043 /* SearchView.swift in Sources */,
 				E09D5AB326BE251B0012F043 /* User.swift in Sources */,
+				E0D8F1E726BF7D02001D2CB6 /* ImagePicker.swift in Sources */,
 				E09D5AA726BE1D510012F043 /* LoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

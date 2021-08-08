@@ -98,49 +98,63 @@ struct NewAccountView: View {
     @State private var password = ""
     @State private var firstName = ""
     @State private var lastName = ""
+    @State private var createAccount = ""
+    @Environment(\.colorScheme) private var currentMode
+    @EnvironmentObject var user: User
     
     var body: some View {
-        HStack {
-            VStack {
-                TextField("Email", text: $email)
-                    .padding(.horizontal)
-                    .padding(.vertical, 15)
-                    .background(Color.gray.opacity(0.3))
-                    .cornerRadius(15)
-                    .padding(.horizontal)
-                    .padding(.vertical, 3)
-                SecureField("Password", text: $password)
-                    .padding(.horizontal)
-                    .padding(.vertical, 15)
-                    .background(Color.gray.opacity(0.3))
-                    .cornerRadius(15)
-                    .padding(.horizontal)
-                    .padding(.vertical, 3)
-                TextField("First Name", text: $firstName)
-                    .padding(.horizontal)
-                    .padding(.vertical, 15)
-                    .background(Color.gray.opacity(0.3))
-                    .cornerRadius(15)
-                    .padding(.horizontal)
-                    .padding(.vertical, 3)
-                TextField("Last Name", text: $lastName)
-                    .padding(.horizontal)
-                    .padding(.vertical, 15)
-                    .background(Color.gray.opacity(0.3))
-                    .cornerRadius(15)
-                    .padding(.horizontal)
-                    .padding(.vertical, 3)
-                Spacer()
+        VStack {
+            TextField("First Name", text: $firstName)
+                .padding(.horizontal)
+                .padding(.vertical, 15)
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(15)
+                .padding(.horizontal)
+                .padding(.vertical, 3)
+            TextField("Last Name", text: $lastName)
+                .padding(.horizontal)
+                .padding(.vertical, 15)
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(15)
+                .padding(.horizontal)
+                .padding(.vertical, 3)
+            TextField("Email", text: $email)
+                .padding(.horizontal)
+                .padding(.vertical, 15)
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(15)
+                .padding(.horizontal)
+                .padding(.vertical, 3)
+            SecureField("Password", text: $password)
+                .padding(.horizontal)
+                .padding(.vertical, 15)
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(15)
+                .padding(.horizontal)
+                .padding(.vertical, 3)
+            Button("Create Account") {
+                user.isSignedIn = true
             }
-        }
+            .frame(maxWidth: .infinity)
+            .frame(height: 50)
+            .background(Color.red)
+            .accentColor(.white)
+            .cornerRadius(15)
+            .padding()
+            Spacer()
+        }.navigationTitle("Create Account")
     }
 }
+
 
 struct Login_Previews: PreviewProvider {
     @Environment(\.colorScheme) var currentMode
     static var previews: some View {
-        LoginView()
-        NewAccountView()
+        LoginView().preferredColorScheme(.dark)
+        NavigationView {
+            NewAccountView()
+        }.preferredColorScheme(.dark)
+        
         
     }
 }

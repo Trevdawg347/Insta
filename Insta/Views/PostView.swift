@@ -64,7 +64,8 @@ struct PostView: View {
                             }
                         }
                         
-                    }
+                    } // Form
+                    .padding(.top, 50)
                     
                     Button("Share") {
                         if image != nil {

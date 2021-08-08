@@ -105,6 +105,7 @@ struct PostView: View {
 }
 
 struct PostView_Previews: PreviewProvider {
+    @Binding var tabSelection: Int
     static var previews: some View {
         PostView()
             .preferredColorScheme(.dark)

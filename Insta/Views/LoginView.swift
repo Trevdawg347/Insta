@@ -105,13 +105,13 @@ struct NewAccountView: View {
     var body: some View {
         VStack {
             Form {
-                TextField("First Name", text: $firstName)
+                TextField("First Name", text: $firstName).padding(10)
 
-                TextField("Last Name", text: $lastName)
+                TextField("Last Name", text: $lastName).padding(10)
 
-                TextField("Email", text: $email)
+                TextField("Email", text: $email).padding(10)
 
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $password).padding(10)
 
             }
             .padding(.top)

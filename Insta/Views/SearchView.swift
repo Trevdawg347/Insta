@@ -28,7 +28,7 @@ struct SearchView: View {
                 .padding()
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    ForEach(0..<50) { index in
+                    ForEach(0..<51) { index in
                         Rectangle()
                             .frame(height: 150)
                         

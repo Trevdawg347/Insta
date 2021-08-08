@@ -6,7 +6,24 @@
 //
 
 import Foundation
+import SwiftUI
 
 class User: ObservableObject {
     @Published var isSignedIn = Bool()
+    @Published var posts: [Posts] = []
 }
+
+struct Posts: Identifiable {
+    
+    var id = UUID()
+    var image = UIImage()
+    var caption = String()
+}
+
+#if canImport(UIKit)
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif

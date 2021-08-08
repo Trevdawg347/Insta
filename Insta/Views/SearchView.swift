@@ -18,12 +18,17 @@ struct SearchView: View {
                 .cornerRadius(15)
                 .padding(.horizontal)
                 .padding(.vertical, 3)
+            Spacer()
+            
+            ForEach(0...10, id: \.self) { index in
+                Rectangle()
+            }
         }
     }
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView().preferredColorScheme(.dark)
     }
 }

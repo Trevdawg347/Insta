@@ -22,10 +22,6 @@ struct HomeView: View {
                 Rectangle()
                     .ignoresSafeArea()
                     .foregroundColor(currentMode == .dark ? Color.black : Color.white)
-                Rectangle()
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, maxHeight: 1)
-                    .padding(.top, 60)
                 VStack {
                     HStack {
                         Text("Insta")
@@ -40,48 +36,57 @@ struct HomeView: View {
                         })
                         
                     }
+                    .padding(.top)
                     .padding(.horizontal)
                     
                     List {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(0..<10) { users in
-                                    Image(systemName: "person.circle")
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 60, height: 60)
-                                        .padding(.leading)
-                                        .padding(.vertical, 5)
-                                        .foregroundColor(.red)
-                                        
+                        Section(header: Text("Stories")) {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack {
+                                    ForEach(0..<10) { users in
+                                        Image(systemName: "person.circle")
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 60, height: 60)
+                                            .padding(.leading)
+                                            .padding(.vertical, 5)
+                                            .foregroundColor(currentMode == .dark ? Color.white : Color.black)
+                                    }
                                 }
                             }
                         }
-                        ForEach(user.posts, id: \.id) { post in
-                            HStack {
-                                Image(systemName: "person.circle")
-                                Text("Username")
-                            }
-                            Image(uiImage: post.image)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 310, height: 310)
-                            HStack {
-                                Image(systemName: "heart")
-                                Image(systemName: "bubble.left")
-                                Text("0 Likes")
-                                Text("0 Comments")
-                            }
-                            if post.caption != "" {
-                                Text(post.caption)
+                        Section(header: Text("Posts")) {
+                            ForEach(user.posts, id: \.id) { post in
+                                HStack {
+                                    Image(systemName: "person.circle")
+                                    Text("Username")
+                                }
+                                Image(uiImage: post.image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 310, height: 310)
+                                HStack {
+                                    Image(systemName: "heart")
+                                    Image(systemName: "bubble.left")
+                                    Text("0 Likes")
+                                    Text("0 Comments")
+                                }
+                                if post.caption != "" {
+                                    Text(post.caption)
+                                }
                             }
                         }
                     }
                     .listStyle(GroupedListStyle())
                 }
-            }
+                Rectangle()
+                    .foregroundColor(currentMode == .dark ? Color.white : Color.gray.opacity(0.6))
+                    .frame(maxWidth: .infinity, maxHeight: 1)
+                    .padding(.top, 73)
+            } // ZStack
+            
             .navigationBarHidden(true)
-        }
+        } // NavigationView
     }
 }
 

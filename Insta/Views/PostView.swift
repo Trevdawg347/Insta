@@ -80,7 +80,6 @@ struct PostView: View {
                     ImagePickerView(sourceType: .photoLibrary) { image in
                         self.image = image
                     }
-                    .preferredColorScheme(.dark)
                 }
                 
             } // ZStack

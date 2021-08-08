@@ -105,14 +105,19 @@ struct NewAccountView: View {
     var body: some View {
         VStack {
             Form {
+                Section(header: Text("NAME")) {
+                    TextField("First Name", text: $firstName).padding(10)
+                    TextField("Last Name", text: $lastName).padding(10)
+                }
                 
-                TextField("First Name", text: $firstName).padding(10)
                 
-                TextField("Last Name", text: $lastName).padding(10)
+                Section(header: Text("Email")) {
+                    TextField("Email", text: $email).padding(10)
+                }
                 
-                TextField("Email", text: $email).padding(10)
-                
-                SecureField("Password", text: $password).padding(10)
+                Section(header: Text("Password")) {
+                    SecureField("Password", text: $password).padding(10)
+                }
                 
                 
             }
@@ -130,7 +135,6 @@ struct NewAccountView: View {
             })
         }
         .navigationTitle("New Account")
-        .navigationBarTitleDisplayMode(.inline)
         
     }
 }
@@ -142,7 +146,7 @@ struct Login_Previews: PreviewProvider {
         LoginView().preferredColorScheme(.dark)
         NavigationView {
             NewAccountView()
-        }.preferredColorScheme(.dark)
+        }.preferredColorScheme(.light)
         
         
     }

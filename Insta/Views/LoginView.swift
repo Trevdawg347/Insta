@@ -146,7 +146,6 @@ struct NewAccountView: View {
     }
 }
 
-
 struct Login_Previews: PreviewProvider {
     @Environment(\.colorScheme) var currentMode
     static var previews: some View {

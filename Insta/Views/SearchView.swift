@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct SearchView: View {
+    
     @State private var search = ""
+    let columns: [GridItem] = [
+        GridItem(.flexible(), spacing: nil, alignment: nil),
+        GridItem(.flexible(), spacing: nil, alignment: nil),
+        GridItem(.flexible(), spacing: nil, alignment: nil),
+    ]
+    
     var body: some View {
         VStack {
             TextField("Search", text: $search)
@@ -18,11 +25,17 @@ struct SearchView: View {
                 .cornerRadius(15)
                 .padding(.horizontal)
                 .padding(.vertical, 3)
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], alignment: .leading) {
-                ForEach(0...10, id: \.self) { index in
-                    Rectangle()
+                .padding()
+            ScrollView {
+                LazyVGrid(columns: columns) {
+                    ForEach(0..<50) { index in
+                        Rectangle()
+                            .frame(height: 150)
+                        
+                    }
                 }
             }
+                
         }
     }
 }

@@ -27,7 +27,7 @@ struct HomeView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height: 30)
-                        .padding(.trailing)
+                        .padding(.trailing, 30)
                         .padding(.top)
                 }
                 .ignoresSafeArea()
@@ -38,7 +38,7 @@ struct HomeView: View {
                             ForEach(0..<10) { users in
                                 Circle()
                                     .frame(width: 50, height: 50)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.red)
                                     .padding(.bottom)
                                     .padding(.leading)
                             }

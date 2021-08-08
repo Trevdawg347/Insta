@@ -114,8 +114,7 @@ struct NewAccountView: View {
                 SecureField("Password", text: $password).padding(10)
 
             }
-            .padding(.top)
-            .navigationTitle("New Account")
+            
             Button(action: { user.isSignedIn = true }, label: {
                 ZStack {
                     Rectangle()
@@ -128,6 +127,8 @@ struct NewAccountView: View {
                 }
             })
         }
+        .navigationTitle("New Account")
+
     }
 }
 

@@ -12,9 +12,6 @@ struct HomeView: View {
     @Environment(\.colorScheme) var currentMode
     @State private var selection: String? = ""
     @EnvironmentObject var user: User
-    init() {
-        UITableView.appearance().contentInset.top = -35
-    }
     
     var body: some View {
         NavigationView {

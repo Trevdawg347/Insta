@@ -24,70 +24,83 @@ struct ProfileView: View {
     ]
     var body: some View {
         NavigationView {
-            ZStack(alignment: .top) {
-                NavigationLink(destination: SettingsView(), tag: settingsTag, selection: $selection, label: {})
-                VStack {
-                    HStack(alignment: .top) {
-                        Button(action: {}, label: {
-                            Image(systemName: "person.circle.fill")
-                                .resizable()
-                                .frame(width: 100, height: 100)
-                                .foregroundColor(currentMode == .dark ? .white : .black)
-                        })
-                        Spacer()
-                        Text("0\nFollowers")
-                            .multilineTextAlignment(.center)
-                            .padding(10)
-                        Text("0\nFollowing")
-                            .multilineTextAlignment(.center)
-                            .padding(10)
-
-                        
-                        Button(action: {
-                            selection = settingsTag
-                        }, label: {
-                            Image(systemName: "gearshape.fill")
-                                .resizable()
-                                .frame(width: 35, height: 35)
-                                .foregroundColor(.red)
-                        })
-                    }.padding()
-                    NavigationLink(destination: Text("Edit Profile"), tag: tags, selection: $selection, label: {})
-                    Button(action: {
-                        selection = tags
-                    }, label: {
-                        ZStack {
-                            Rectangle()
-                                .foregroundColor(.red)
-                                .cornerRadius(15)
-                                .frame(maxWidth: .infinity, maxHeight: 50)
-                                .padding()
-                            Text("Edit Profile").foregroundColor(.white)
+            GeometryReader { geometry in
+                ZStack(alignment: .top) {
+                    NavigationLink(destination: SettingsView(), tag: settingsTag, selection: $selection, label: {})
+                    VStack {
+                        HStack(alignment: .top) {
+                            VStack(alignment: .center) {
+                                Button(action: {}, label: {
+                                    Image(systemName: "person.circle.fill")
+                                        .resizable()
+                                        .foregroundColor(currentMode == .dark ? .white : .black)
+                                        .frame(width: 90, height: 90)
+                                })
+                                Text("Username")
+                            }
+                            Spacer()
+                            Text("0\nFollowers")
+                                .multilineTextAlignment(.center)
+                                .padding(10)
+                                .padding(.top, 20)
+                            Text("0\nFollowing")
+                                .multilineTextAlignment(.center)
+                                .padding(10)
+                                .padding(.top, 20)
+                            
+                            Button(action: {
+                                selection = settingsTag
+                            }, label: {
+                                Image(systemName: "gearshape.fill")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                                    .foregroundColor(.red)
+                            })
                             
                         }
-                    })
-                    Spacer()
-                    ScrollView {
-                        LazyVGrid(columns: columns) {
-                            ForEach(0..<51) { index in
+                        .padding(.top)
+                        .padding(.horizontal)
+                        
+                        NavigationLink(destination: Text("Edit Profile"), tag: tags, selection: $selection, label: {})
+                        Button(action: {
+                            selection = tags
+                        }, label: {
+                            ZStack {
                                 Rectangle()
-                                    .frame(height: 150)
+                                    .foregroundColor(.red)
+                                    .cornerRadius(15)
+                                    .frame(maxWidth: .infinity, maxHeight: 50)
+                                    .padding()
+                                Text("Edit Profile").foregroundColor(.white)
                                 
+                            }
+                        })
+                        Spacer()
+                        ScrollView {
+                            LazyVGrid(columns: columns) {
+                                ForEach(user.posts) { post in
+                                    Image(uiImage: post.image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: (geometry.size.width - 1) / 3, height: (geometry.size.width - 1) / 3)
+                                        .foregroundColor(.gray)
+                                        .clipped()
+                                }
                             }
                         }
                     }
-                }
-                Rectangle()
-                    .foregroundColor(currentMode == .dark ? Color.white : Color.gray.opacity(0.4))
-                    .frame(maxWidth: .infinity, maxHeight: 1)
-                    .padding(.top, 221)
+                    Rectangle()
+                        .foregroundColor(currentMode == .dark ? Color.white : Color.gray.opacity(0.4))
+                        .frame(maxWidth: .infinity, maxHeight: 1)
+                        .padding(.top, 222)
                     
-            } // ZStack
+                } // ZStack
+                
+                .navigationBarHidden(true)
+            } // NavigationView
+            .navigationViewStyle(StackNavigationViewStyle())
             
-            .navigationBarHidden(true)
-        } // NavigationView
-        .navigationViewStyle(StackNavigationViewStyle())
-        
+        }
     }
 }
 

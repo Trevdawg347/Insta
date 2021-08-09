@@ -19,7 +19,7 @@ struct MainView: View {
             TabView(selection: $tabSelection) {
                 HomeView()
                     .tabItem { Image(systemName: "house") }.tag(1)
-                SearchView()
+                SearchView(tabSelection: $tabSelection)
                     .tabItem { Image(systemName: "magnifyingglass") }.tag(2)
                 PostView(tabSelection: $tabSelection)
                     .tabItem { Image(systemName: "plus.square") }.tag(3)

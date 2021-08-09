@@ -57,8 +57,9 @@ struct HomeView: View {
                                     }
                                 }
                             }
-                            Section(header: Text("Posts")) {
-                                ForEach(user.posts, id: \.id) { post in
+                            
+                            ForEach(user.posts, id: \.id) { post in
+                                Section(header: Text("Posts")) {
                                     HStack {
                                         Image(systemName: "person.circle")
                                         Text("Username")
@@ -68,9 +69,9 @@ struct HomeView: View {
                                         .scaledToFill()
                                         .frame(width: geometry.size.width - 30, height: geometry.size.width - 30)
                                         .clipped()
-                                        
                                     
-                                        
+                                    
+                                    
                                     
                                     
                                     
@@ -89,7 +90,7 @@ struct HomeView: View {
                         .listStyle(GroupedListStyle())
                     }
                     Rectangle()
-                        .foregroundColor(currentMode == .dark ? Color.white : Color.gray.opacity(0.6))
+                        .foregroundColor(currentMode == .dark ? Color.white : Color.gray.opacity(0.4))
                         .frame(maxWidth: .infinity, maxHeight: 1)
                         .padding(.top, 73)
                 } // GeometryReader
@@ -107,7 +108,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .preferredColorScheme(.dark)
+            .preferredColorScheme(.light)
             .environmentObject(User())
     }
 }

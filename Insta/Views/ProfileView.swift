@@ -15,6 +15,7 @@ struct ProfileView: View {
     @State private var selection: String? = ""
     @State private var tags: String = "tag"
     @State private var settingsTag: String = "settings"
+    @Environment(\.colorScheme) var currentMode
     
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: nil, alignment: nil),
@@ -23,40 +24,24 @@ struct ProfileView: View {
     ]
     var body: some View {
         NavigationView {
-            ZStack {
+            ZStack(alignment: .top) {
                 NavigationLink(destination: SettingsView(), tag: settingsTag, selection: $selection, label: {})
                 VStack {
                     HStack(alignment: .top) {
-                        ZStack(alignment: .bottomTrailing) {
-                            Image(systemName: "plus.circle.fill")
-                                .foregroundColor(.red)
-                            Image(systemName: "person.circle")
+                        Button(action: {}, label: {
+                            Image(systemName: "person.circle.fill")
                                 .resizable()
                                 .frame(width: 100, height: 100)
-                        }
+                                .foregroundColor(currentMode == .dark ? .white : .black)
+                        })
                         Spacer()
-                        VStack {
-                            Button("Following") {
-                                user.isSignedIn = false
-                            }
-                            .foregroundColor(.red)
-                            Button(String(following)) {
-                                user.isSignedIn = false
-                            }
-                            .foregroundColor(.red)
-                        }
-                        Spacer()
-                        VStack {
-                            Button("Followers") {
-                                user.isSignedIn = false
-                            }
-                            .foregroundColor(.red)
-                            Button(String(followers)) {
-                                user.isSignedIn = false
-                            }
-                            .foregroundColor(.red)
-                        }
-                        Spacer()
+                        Text("0\nFollowers")
+                            .multilineTextAlignment(.center)
+                            .padding(10)
+                        Text("0\nFollowing")
+                            .multilineTextAlignment(.center)
+                            .padding(10)
+
                         
                         Button(action: {
                             selection = settingsTag
@@ -64,6 +49,7 @@ struct ProfileView: View {
                             Image(systemName: "gearshape.fill")
                                 .resizable()
                                 .frame(width: 35, height: 35)
+                                .foregroundColor(.red)
                         })
                     }.padding()
                     NavigationLink(destination: Text("Edit Profile"), tag: tags, selection: $selection, label: {})
@@ -72,8 +58,10 @@ struct ProfileView: View {
                     }, label: {
                         ZStack {
                             Rectangle()
-                                .frame(width: 200, height: 50)
+                                .foregroundColor(.red)
                                 .cornerRadius(15)
+                                .frame(maxWidth: .infinity, maxHeight: 50)
+                                .padding()
                             Text("Edit Profile").foregroundColor(.white)
                             
                         }
@@ -89,8 +77,14 @@ struct ProfileView: View {
                         }
                     }
                 }
-                
-            }.navigationBarHidden(true)
+                Rectangle()
+                    .foregroundColor(currentMode == .dark ? Color.white : Color.gray.opacity(0.4))
+                    .frame(maxWidth: .infinity, maxHeight: 1)
+                    .padding(.top, 221)
+                    
+            } // ZStack
+            
+            .navigationBarHidden(true)
         } // NavigationView
         .navigationViewStyle(StackNavigationViewStyle())
         

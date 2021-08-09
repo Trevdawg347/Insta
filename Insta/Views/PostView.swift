@@ -34,37 +34,41 @@ struct PostView: View {
                             .foregroundColor(currentMode == .dark ? Color.white : Color.black)
                         }
                         
-                        
-                        Section(header: Text("Caption")) {
-                            TextEditor(text: $caption)
-                            
-                        }
-                        Section(header: Text("Settings")) {
-                            Toggle("Allow Comments", isOn: $showComments)
-                                .toggleStyle(SwitchToggleStyle(tint: Color.red))
-                            Toggle("Show Like Count", isOn: $showLikes)
-                                .toggleStyle(SwitchToggleStyle(tint: Color.red))
-                            
-                            
-                        }
-                        
-                        if image != nil {
-                            Section(header: Text("Preview")) {
-                                Image(uiImage: image!)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 310, height: 310)
-                                HStack {
-                                    Image(systemName: "heart")
-                                    Image(systemName: "bubble.left")
-                                    Text("0 Likes")
-                                    Text("0 Comments")
-                                }
+                        Group {
+                            Section(header: Text("Caption")) {
+                                TextEditor(text: $caption)
+                                    .disableAutocorrection(true)
                                 
-                                if caption != "" {
-                                    Text(caption)
+                            }
+                            Section(header: Text("Settings")) {
+                                Toggle("Allow Comments", isOn: $showComments)
+                                    .toggleStyle(SwitchToggleStyle(tint: Color.red))
+                                Toggle("Show Like Count", isOn: $showLikes)
+                                    .toggleStyle(SwitchToggleStyle(tint: Color.red))
+                                
+                                
+                            }
+                            
+                            if image != nil {
+                                Section(header: Text("Preview")) {
+                                    Image(uiImage: image!)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 310, height: 310)
+                                    HStack {
+                                        Image(systemName: "heart")
+                                        Image(systemName: "bubble.left")
+                                        Text("0 Likes")
+                                        Text("0 Comments")
+                                    }
+                                    
+                                    if caption != "" {
+                                        Text(caption)
+                                    }
                                 }
                             }
+                        }.onTapGesture {
+                            self.hideKeyboard()
                         }
                         
                     } // Form

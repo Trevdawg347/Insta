@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     
+    @Environment(\.colorScheme) var currentMode
     @State private var search = ""
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: nil, alignment: nil),
@@ -18,10 +19,7 @@ struct SearchView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            Rectangle()
-                .foregroundColor(.gray)
-                .frame(maxWidth: .infinity, maxHeight: 1)
-                .padding(.top, 75)
+
             VStack {
                 ZStack {
                     TextField("    Search", text: $search)
@@ -50,6 +48,10 @@ struct SearchView: View {
                 }
                 
             }
+            Rectangle()
+                .foregroundColor(currentMode == .dark ? Color.white : Color.gray.opacity(0.4))
+                .frame(maxWidth: .infinity, maxHeight: 1)
+                .padding(.top, 75)
         }
     }
 }

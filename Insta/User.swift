@@ -10,6 +10,11 @@ import SwiftUI
 
 class User: ObservableObject {
     @Published var isSignedIn = Bool()
+    @Published var username = ""
+    @Published var firstName = ""
+    @Published var lastName = ""
+    
+    
     @Published var posts: [Posts] = []
 }
 

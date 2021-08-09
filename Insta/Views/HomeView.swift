@@ -101,7 +101,7 @@ struct HomeView: View {
                         .listStyle(GroupedListStyle())
                     }
                     Rectangle()
-                        .foregroundColor(currentMode == .dark ? Color.white : Color.gray.opacity(0.4))
+                        .foregroundColor(Color.gray.opacity(0.4))
                         .frame(maxWidth: .infinity, maxHeight: 1)
                         .padding(.top, 73)
                 } // GeometryReader

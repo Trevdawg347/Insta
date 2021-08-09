@@ -15,9 +15,9 @@ struct SearchView: View {
     @State private var search = ""
     @Binding var tabSelection: Int
     let columns: [GridItem] = [
-        GridItem(.flexible(), spacing: nil, alignment: nil),
-        GridItem(.flexible(), spacing: nil, alignment: nil),
-        GridItem(.flexible(), spacing: nil, alignment: nil),
+        GridItem(.flexible(), spacing: 2, alignment: nil),
+        GridItem(.flexible(), spacing: 2, alignment: nil),
+        GridItem(.flexible(), spacing: 2, alignment: nil),
     ]
     
     var body: some View {
@@ -25,23 +25,27 @@ struct SearchView: View {
             GeometryReader { geometry in
                 VStack {
                     
-                    ZStack {
-                        TextField("    Search", text: $search)
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
-                            .background(Color.gray.opacity(0.3))
-                            .cornerRadius(15)
-                            .padding(.horizontal)
-                        
-                        HStack {
+                    TextField("Search ...", text: $search)
+                        .padding(7)
+                        .padding(.horizontal, 25)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 17)
+                        .disableAutocorrection(true)
+                        .overlay(
                             Image(systemName: "magnifyingglass")
-                                .padding(25)
                                 .foregroundColor(.gray)
-                            Spacer()
-                        }
-                    }
+                                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading, 15)
+                                .padding(.top)
+                        )
+                        
+                        
+                    
+                    
                     ScrollView {
-                        LazyVGrid(columns: columns) {
+                        LazyVGrid(columns: columns, spacing: 1) {
                             ForEach(user.posts) { post in
                                 Button(action: { tabSelection = 5 }, label: {
                                     Image(uiImage: post.image)
@@ -60,9 +64,12 @@ struct SearchView: View {
                 }
             }
             Rectangle()
-                .foregroundColor(currentMode == .dark ? Color.white : Color.gray.opacity(0.4))
+                .foregroundColor(Color.gray.opacity(0.4))
                 .frame(maxWidth: .infinity, maxHeight: 1)
-                .padding(.top, 75)
+                .padding(.top, 76)
+        }
+        .onTapGesture {
+            self.hideKeyboard()
         }
     }
 }
@@ -72,5 +79,6 @@ struct SearchView: View {
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView(tabSelection: .constant(2)).preferredColorScheme(.dark)
+            .environmentObject(User())
     }
 }

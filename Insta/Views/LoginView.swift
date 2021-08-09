@@ -33,9 +33,9 @@ struct LoginView: View {
                     Form {
                         
                         TextField("Email", text: $email)
-
+                        
                         SecureField("Password", text: $password)
-
+                        
                     }
                     
                     Spacer()
@@ -111,22 +111,25 @@ struct NewAccountView: View {
                     Section(header: Text("Password")) {
                         SecureField("Password", text: $password)
                     }
-                    
-                    
-                    
                 }
                 
-                Button(action: { user.isSignedIn = true }, label: {
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.red)
-                            .cornerRadius(15)
-                            .frame(maxWidth: .infinity, maxHeight: 50)
-                            .padding()
-                        Text("Create Account")
-                            .foregroundColor(.white)
-                    }
-                })
+                Button(action: {
+                    user.isSignedIn = true
+                    user.firstName = firstName
+                    user.lastName = lastName
+                    user.username = username
+                    
+                }, label: {
+                        ZStack {
+                            Rectangle()
+                                .foregroundColor(.red)
+                                .cornerRadius(15)
+                                .frame(maxWidth: .infinity, maxHeight: 50)
+                                .padding()
+                            Text("Create Account")
+                                .foregroundColor(.white)
+                        }
+                       })
             }
             .navigationTitle("New Account")
         }

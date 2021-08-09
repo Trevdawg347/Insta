@@ -18,66 +18,68 @@ struct ProfileView: View {
     @Environment(\.colorScheme) var currentMode
     
     let columns: [GridItem] = [
-        GridItem(.flexible(), spacing: nil, alignment: nil),
-        GridItem(.flexible(), spacing: nil, alignment: nil),
-        GridItem(.flexible(), spacing: nil, alignment: nil),
+        GridItem(.flexible(), spacing: 2, alignment: nil),
+        GridItem(.flexible(), spacing: 2, alignment: nil),
+        GridItem(.flexible(), spacing: 2, alignment: nil),
     ]
     var body: some View {
-        NavigationView {
-            GeometryReader { geometry in
-                ZStack(alignment: .top) {
-                    NavigationLink(destination: SettingsView(), tag: settingsTag, selection: $selection, label: {})
-                    VStack {
-                        HStack(alignment: .top) {
-                            VStack(alignment: .center) {
-                                Button(action: {}, label: {
-                                    Image(systemName: "person.circle.fill")
-                                        .resizable()
-                                        .foregroundColor(currentMode == .dark ? .white : .black)
-                                        .frame(width: 90, height: 90)
-                                })
-                                Text("Username")
-                            }
-                            Spacer()
-                            Text("0\nFollowers")
-                                .multilineTextAlignment(.center)
-                                .padding(10)
-                                .padding(.top, 20)
-                            Text("0\nFollowing")
-                                .multilineTextAlignment(.center)
-                                .padding(10)
-                                .padding(.top, 20)
-                            
-                            Button(action: {
-                                selection = settingsTag
-                            }, label: {
-                                Image(systemName: "gearshape.fill")
-                                    .resizable()
-                                    .frame(width: 35, height: 35)
-                                    .foregroundColor(.red)
-                            })
-                            
-                        }
-                        .padding(.top)
-                        .padding(.horizontal)
+        GeometryReader { geometry in
+            NavigationView {
+                ScrollView {
+                    ZStack(alignment: .top) {
+                        NavigationLink(destination: SettingsView(), tag: settingsTag, selection: $selection, label: {})
                         
-                        NavigationLink(destination: Text("Edit Profile"), tag: tags, selection: $selection, label: {})
-                        Button(action: {
-                            selection = tags
-                        }, label: {
-                            ZStack {
-                                Rectangle()
-                                    .foregroundColor(.red)
-                                    .cornerRadius(15)
-                                    .frame(maxWidth: .infinity, maxHeight: 50)
-                                    .padding()
-                                Text("Edit Profile").foregroundColor(.white)
+                        VStack {
+                            HStack(alignment: .top) {
+                                VStack(alignment: .center) {
+                                    Button(action: {}, label: {
+                                        Image(systemName: "person.circle.fill")
+                                            .resizable()
+                                            .foregroundColor(currentMode == .dark ? .white : .black)
+                                            .frame(width: 90, height: 90)
+                                    })
+                                    Text("Username")
+                                }
+                                Spacer()
+                                Text("0\nFollowers")
+                                    .multilineTextAlignment(.center)
+                                    .padding(10)
+                                    .padding(.top, 20)
+                                Text("0\nFollowing")
+                                    .multilineTextAlignment(.center)
+                                    .padding(10)
+                                    .padding(.top, 20)
+                                
+                                Button(action: {
+                                    selection = settingsTag
+                                }, label: {
+                                    Image(systemName: "gearshape.fill")
+                                        .resizable()
+                                        .frame(width: 25, height: 25)
+                                        .foregroundColor(.red)
+                                })
                                 
                             }
-                        })
-                        Spacer()
-                        ScrollView {
-                            LazyVGrid(columns: columns) {
+                            .padding(.top)
+                            .padding(.horizontal)
+                            
+                            NavigationLink(destination: Text("Edit Profile"), tag: tags, selection: $selection, label: {})
+                            Button(action: {
+                                selection = tags
+                            }, label: {
+                                ZStack {
+                                    Rectangle()
+                                        .foregroundColor(.red)
+                                        .cornerRadius(15)
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: 50)
+                                        .padding()
+                                    Text("Edit Profile").foregroundColor(.white)
+                                    
+                                }
+                            })
+                            Spacer()
+                            LazyVGrid(columns: columns, spacing: 1) {
                                 ForEach(user.posts) { post in
                                     Image(uiImage: post.image)
                                         .resizable()
@@ -88,19 +90,18 @@ struct ProfileView: View {
                                 }
                             }
                         }
-                    }
-                    Rectangle()
-                        .foregroundColor(currentMode == .dark ? Color.white : Color.gray.opacity(0.4))
-                        .frame(maxWidth: .infinity, maxHeight: 1)
-                        .padding(.top, 222)
-                    
-                } // ZStack
-                
+                        Rectangle()
+                            .foregroundColor(Color.gray.opacity(0.4))
+                            .frame(maxWidth: .infinity, maxHeight: 1)
+                            .padding(.top, 222)
+                        
+                    } //ZStack
+                } //ScrollView
                 .navigationBarHidden(true)
             } // NavigationView
             .navigationViewStyle(StackNavigationViewStyle())
             
-        }
+        } //GeometryReader
     }
 }
 
@@ -109,6 +110,7 @@ struct ProfileView_Previews: PreviewProvider {
         
         ProfileView()
             .preferredColorScheme(.dark)
+            .environmentObject(User())
         
         
     }

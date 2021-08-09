@@ -17,16 +17,16 @@ struct MainView: View {
         if user.isSignedIn == true {
             
             TabView(selection: $tabSelection) {
-                HomeView()
-                    .tabItem { Image(systemName: "house") }.tag(1)
-                SearchView(tabSelection: $tabSelection)
-                    .tabItem { Image(systemName: "magnifyingglass") }.tag(2)
+                HomeView().tabItem { Image(systemName: tabSelection == 1 ? "house.fill" : "house") }.tag(1)
+                
+                SearchView(tabSelection: $tabSelection).tabItem { Image(systemName: "magnifyingglass") }.tag(2)
+                
                 PostView(tabSelection: $tabSelection)
-                    .tabItem { Image(systemName: "plus.square") }.tag(3)
-                ActivityView()
-                    .tabItem { Image(systemName: "heart") }.tag(4)
-                ProfileView()
-                    .tabItem { Image(systemName: "person.circle") }.tag(5)
+                    .tabItem { Image(systemName: tabSelection == 3 ? "plus.square.fill" : "plus.square") }.tag(3)
+                
+                ActivityView().tabItem { Image(systemName: tabSelection == 4 ? "heart.fill" : "heart") }.tag(4)
+                
+                ProfileView().tabItem { Image(systemName: tabSelection == 5 ? "person.fill" : "person") }.tag(5)
                 
             }.accentColor(.red)
             
@@ -44,6 +44,5 @@ struct MainView_Previews: PreviewProvider {
                 .preferredColorScheme(scheme)
                 .environmentObject(User())
         }
-        .previewDevice("iPad (8th generation)")
     }
 }

@@ -12,6 +12,9 @@ struct HomeView: View {
     @Environment(\.colorScheme) var currentMode
     @State private var selection: String? = ""
     @EnvironmentObject var user: User
+    init() {
+        UITableView.appearance().showsVerticalScrollIndicator = false
+    }
     
     var body: some View {
         NavigationView {
@@ -41,7 +44,7 @@ struct HomeView: View {
                         .padding(.top)
                         .padding(.horizontal)
                         
-                        List {
+                        List() {
                             Section(header: Text("Stories")) {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack {
@@ -57,32 +60,40 @@ struct HomeView: View {
                                     }
                                 }
                             }
-                            
-                            ForEach(user.posts, id: \.id) { post in
+                            if !user.posts.isEmpty {
                                 Section(header: Text("Posts")) {
-                                    HStack {
-                                        Image(systemName: "person.circle")
-                                        Text("Username")
-                                    }
-                                    Image(uiImage: post.image)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: geometry.size.width - 30, height: geometry.size.width - 30)
-                                        .clipped()
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    HStack {
-                                        Image(systemName: "heart")
-                                        Image(systemName: "bubble.left")
-                                        Text("0 Likes")
-                                        Text("0 Comments")
-                                    }
-                                    if post.caption != "" {
-                                        Text(post.caption)
+                                    ForEach(user.posts.reversed(), id: \.id) { post in
+                                        
+                                        HStack {
+                                            Image(systemName: "person.circle")
+                                            Text("Username")
+                                        }
+                                        Image(uiImage: post.image)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: geometry.size.width - 30, height: geometry.size.width - 30)
+                                            .clipped()
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        HStack {
+                                            Image(systemName: "heart")
+                                            if post.showComments {
+                                                Image(systemName: "bubble.left")
+                                            }
+                                            if post.showLikes {
+                                                Text("0 Likes")
+                                            }
+                                            if post.showComments {
+                                                Text("0 Comments")
+                                            }
+                                        }
+                                        if post.caption != "" {
+                                            Text(post.caption)
+                                        }
                                     }
                                 }
                             }

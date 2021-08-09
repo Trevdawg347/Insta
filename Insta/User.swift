@@ -18,6 +18,8 @@ struct Posts: Identifiable {
     var id = UUID()
     var image = UIImage()
     var caption = String()
+    var showComments = Bool()
+    var showLikes = Bool()
 }
 
 #if canImport(UIKit)

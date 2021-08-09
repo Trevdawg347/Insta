@@ -31,7 +31,7 @@ struct PostView: View {
                                 showImagePicker.toggle()
                                 
                             }
-                            .foregroundColor(currentMode == .dark ? Color.white : Color.black)
+
                         }
                         
                         Group {
@@ -75,7 +75,7 @@ struct PostView: View {
                     
                     Button(action: {
                         if image != nil {
-                            user.posts.append(Posts(image: image!, caption: caption))
+                            user.posts.append(Posts(image: image!, caption: caption, showComments: showComments, showLikes: showLikes))
                             self.hideKeyboard()
                             image = nil
                             caption = ""
@@ -100,6 +100,7 @@ struct PostView: View {
                     ImagePickerView(sourceType: .photoLibrary) { image in
                         self.image = image
                     }
+                    .accentColor(.red)
                 }
                 
             } // ZStack

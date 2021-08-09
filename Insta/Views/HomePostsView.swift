@@ -15,30 +15,29 @@ struct HomePostsView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                ZStack {
-                    HStack {
-                        Image(systemName: "person.circle")
-                            .foregroundColor(.red)
-                        Text(user.username)
-                    }
-                    Image(uiImage: post.image)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: geometry.size.width, height: geometry.size.width)
-                        .clipped()
-                        .onTapGesture {
-                            post.caption = "a"
-                        }
-                    
-                    HStack {
-                        Image(systemName: "heart")
-                        if post.showComments { Image(systemName: "bubble.left") }
-                        if post.showLikes { Text("0 Likes") }
-                        if post.showComments { Text("0 Comments") }
-                    }
-                    if post.caption != "" { Text(post.caption) }
+                HStack {
+                    Image(systemName: "person.circle")
+                        .foregroundColor(.red)
+                    Text(user.username)
                 }
-            }.frame(width: geometry.size.width, height: geometry.size.width)
+                Image(uiImage: post.image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: geometry.size.width, height: geometry.size.width)
+                    .clipped()
+                    .onTapGesture {
+                        post.caption = "a"
+                    }
+                
+                HStack {
+                    Image(systemName: "heart")
+                    if post.showComments { Image(systemName: "bubble.left") }
+                    if post.showLikes { Text("0 Likes") }
+                    if post.showComments { Text("0 Comments") }
+                }
+                if post.caption != "" { Text(post.caption) }
+            }
+            .listStyle(GroupedListStyle())
         }
     }
 }

@@ -44,7 +44,7 @@ struct HomeView: View {
                         .padding(.top)
                         .padding(.horizontal)
                         
-                        ScrollView() {
+                        ScrollView {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack {
                                     ForEach(0..<10) { users in
@@ -63,10 +63,8 @@ struct HomeView: View {
                             if !user.posts.isEmpty {
                                 
                                 ForEach(user.posts.reversed()) { post in
-                                    
                                     HomePostsView(post: post)
                                         .frame(width: geometry.size.width, height: geometry.size.width)
-                                    
                                 }
                             }
                         }

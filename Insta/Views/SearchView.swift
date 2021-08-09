@@ -37,8 +37,8 @@ struct SearchView: View {
                             Image(systemName: "magnifyingglass")
                                 .foregroundColor(.gray)
                                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading, 15)
-                                .padding(.top)
+                                .padding(.leading, 17)
+                                .padding(.vertical, 17)
                         )
                         
                         

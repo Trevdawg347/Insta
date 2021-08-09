@@ -15,6 +15,7 @@ struct HomeView: View {
     init() {
         UITableView.appearance().showsVerticalScrollIndicator = false
     }
+
     
     var body: some View {
         NavigationView {
@@ -62,11 +63,11 @@ struct HomeView: View {
                             }
                             if !user.posts.isEmpty {
                                 Section(header: Text("Posts")) {
-                                    ForEach(user.posts.reversed(), id: \.id) { post in
-                                        
+                                    ForEach(user.posts.reversed()) { post in
                                         HStack {
                                             Image(systemName: "person.circle")
-                                            Text("Username")
+                                                .foregroundColor(.red)
+                                            Text(user.username)
                                         }
                                         Image(uiImage: post.image)
                                             .resizable()

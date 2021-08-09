@@ -38,7 +38,7 @@ struct ProfileView: View {
                                             .foregroundColor(currentMode == .dark ? .white : .black)
                                             .frame(width: 90, height: 90)
                                     })
-                                    Text("Username")
+                                    Text(user.username)
                                 }
                                 Spacer()
                                 Text("0\nFollowers")
@@ -93,7 +93,7 @@ struct ProfileView: View {
                         Rectangle()
                             .foregroundColor(Color.gray.opacity(0.4))
                             .frame(maxWidth: .infinity, maxHeight: 1)
-                            .padding(.top, 222)
+                            .padding(.top, 209)
                         
                     } //ZStack
                 } //ScrollView

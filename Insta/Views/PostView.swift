@@ -57,9 +57,9 @@ struct PostView: View {
                                         .frame(width: 310, height: 310)
                                     HStack {
                                         Image(systemName: "heart")
-                                        Image(systemName: "bubble.left")
-                                        Text("0 Likes")
-                                        Text("0 Comments")
+                                        if showComments { Image(systemName: "bubble.left") }
+                                        if showLikes { Text("0 Likes") }
+                                        if showComments { Text("0 Comments") }
                                     }
                                     
                                     if caption != "" {
@@ -75,9 +75,6 @@ struct PostView: View {
                     
                     Button(action: {
                         if image != nil {
-                            user.posts.append(Posts(image: image!, caption: caption, showComments: showComments, showLikes: showLikes))
-                            user.posts.append(Posts(image: image!, caption: caption, showComments: showComments, showLikes: showLikes))
-                            user.posts.append(Posts(image: image!, caption: caption, showComments: showComments, showLikes: showLikes))
                             user.posts.append(Posts(image: image!, caption: caption, showComments: showComments, showLikes: showLikes))
                             self.hideKeyboard()
                             image = nil

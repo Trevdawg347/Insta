@@ -10,7 +10,7 @@ import SwiftUI
 
 class User: ObservableObject {
     @Published var isSignedIn = Bool()
-    @Published var username = ""
+    @Published var username = "jonbuhler14"
     @Published var firstName = ""
     @Published var lastName = ""
     

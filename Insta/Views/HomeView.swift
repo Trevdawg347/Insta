@@ -27,24 +27,25 @@ struct HomeView: View {
                 Rectangle()
                     .ignoresSafeArea()
                     .foregroundColor(currentMode == .dark ? Color.black : Color.white)
-                GeometryReader { geometry in
-                    VStack {
-                        HStack {
-                            Text("Insta")
-                                .font(Font.custom("Futura-Bold", size: 30))
-                            Spacer()
-                            Button(action: { selection = "messageView" }, label: {
-                                Image(systemName: "bubble.left")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(currentMode == .dark ? Color.white : Color.black)
-                            })
-                        }
-                        .padding(.top)
-                        .padding(.horizontal)
-                        
-                        ScrollView {
+                VStack {
+                    HStack {
+                        Text("Insta")
+                            .font(Font.custom("Futura-Bold", size: 30))
+                        Spacer()
+                        Button(action: { selection = "messageView" }, label: {
+                            Image(systemName: "bubble.left")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(currentMode == .dark ? Color.white : Color.black)
+                        })
+                    }
+                    .padding(.top)
+                    .padding(.horizontal)
+                    
+                    ScrollView {
+                        LazyVStack(spacing: 0) {
+                            
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack {
                                     ForEach(0..<10) { users in
@@ -59,21 +60,19 @@ struct HomeView: View {
                                 }
                             }
                             
-                            
-                            if !user.posts.isEmpty {
-                                
-                                ForEach(user.posts.reversed()) { post in
-                                    HomePostsView(post: post)
-                                        .frame(width: geometry.size.width, height: geometry.size.width)
-                                }
+                            ForEach(user.posts) { post in
+                                HomePostsView(post: post)
+                                    .frame(height: post.height)
                             }
                         }
                     }
-                    Rectangle()
-                        .foregroundColor(Color.gray.opacity(0.4))
-                        .frame(maxWidth: .infinity, maxHeight: 1)
-                        .padding(.top, 73)
-                } // GeometryReader
+                }
+                
+                
+                Rectangle()
+                    .foregroundColor(Color.gray.opacity(0.4))
+                    .frame(maxWidth: .infinity, maxHeight: 1)
+                    .padding(.top, 73)
                 
                 
             } // ZStack

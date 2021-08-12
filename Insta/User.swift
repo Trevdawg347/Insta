@@ -14,12 +14,10 @@ class User: ObservableObject {
     @Published var firstName = ""
     @Published var lastName = ""
     
-    
     @Published var posts: [Posts] = []
 }
 
 struct Posts: Identifiable {
-    
     var id = UUID()
     var image: UIImage
     var caption: String

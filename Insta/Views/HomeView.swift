@@ -34,7 +34,7 @@ struct HomeView: View {
                                 .font(Font.custom("Futura-Bold", size: 30))
                             Spacer()
                             Button(action: { selection = "messageView" }, label: {
-                                Image(systemName: "bubble.left")
+                                Image(systemName: "paperplane")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 30, height: 30)

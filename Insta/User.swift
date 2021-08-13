@@ -23,6 +23,7 @@ struct Posts: Identifiable {
     var caption: String
     var showComments: Bool
     var showLikes: Bool
+    var profileImage: UIImage
 }
 
 #if canImport(UIKit)

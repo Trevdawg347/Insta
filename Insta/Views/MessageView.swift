@@ -10,6 +10,7 @@ import SwiftUI
 struct MessageView: View {
     
     @State private var search: String = ""
+    @EnvironmentObject var user: User
     
     var body: some View {
         VStack {
@@ -32,6 +33,10 @@ struct MessageView: View {
                 .foregroundColor(Color.gray.opacity(0.4))
                 .frame(maxWidth: .infinity, maxHeight: 1)
             Spacer()
+            ForEach(user.posts) { post in
+                Image(uiImage: post.image)
+            }
+            Spacer()
         }
         
         
@@ -42,5 +47,6 @@ struct MessageView: View {
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
         MessageView()
+            .environmentObject(User())
     }
 }

@@ -9,7 +9,14 @@ import SwiftUI
 
 struct ActivityView: View {
     var body: some View {
-        Text("Activity View")
+        NavigationView {
+            Form {
+                ForEach(1..<10) { _ in 
+                    Text("Someone Liked your post")
+                }
+            }
+            .navigationTitle("Activity")
+        }
     }
 }
 

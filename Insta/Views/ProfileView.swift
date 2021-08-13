@@ -16,17 +16,27 @@ struct ProfileBarView: View {
     @State private var settingsTag: String = "settings"
     @Environment(\.colorScheme) var currentMode
     @EnvironmentObject var user: User
+    @State var showImagePicker: Bool = false
+    @State var image: UIImage?
     
     var body: some View {
         NavigationLink(destination: SettingsView(), tag: settingsTag, selection: $selection, label: {})
         
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .top) {
-                Button(action: {}, label: {
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .foregroundColor(currentMode == .dark ? .white : .black)
-                        .frame(width: 90, height: 90)
+                Button(action: { showImagePicker.toggle() }, label: {
+                    if image == nil {
+                        Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .foregroundColor(currentMode == .dark ? .white : .black)
+                            .frame(width: 90, height: 90)
+                    } else {
+                        Image(uiImage: image!)
+                            .resizable()
+                            .frame(width: 90, height: 90)
+                            .scaledToFill()
+                            .clipShape(Circle())
+                    }
                 })
                 
                 
@@ -73,6 +83,12 @@ struct ProfileBarView: View {
             Rectangle()
                 .foregroundColor(Color.gray.opacity(0.4))
                 .frame(maxWidth: .infinity, maxHeight: 1)
+        }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePickerView(sourceType: .photoLibrary) { image in
+                self.image = image
+            }
+            .accentColor(.red)
         }
         .navigationBarHidden(true)
     }

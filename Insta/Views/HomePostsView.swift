@@ -12,8 +12,10 @@ struct HomePostsView: View {
     @EnvironmentObject var user: User
     @State var post: Posts
     @State private var likes:Int = 0
-    @State private var alreadyliked = Bool()
+    @State private var alreadyLiked = Bool()
+    @State private var likedColor: Color = .clear
     var geo: GeometryProxy
+    @Environment(\.colorScheme) var currentMode
     
     var body: some View {
         VStack(spacing: 0) {
@@ -45,36 +47,26 @@ struct HomePostsView: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.width)
                 .clipped()
-            Image(systemName: "heart.fill")
-                .resizable()
-                .foregroundColor(alreadyliked ? .red: .clear)
-                .onTapGesture(count: 2) {
-                    if alreadyliked == false {
-                        likes += 1
-                    } else {
-                        likes -= 1
-                    }
-                    alreadyliked.toggle()
-                }
+                .onTapGesture(count: 2) { like() }
+            if alreadyLiked {
+                Image(systemName: "heart.fill")
+                    .resizable()
+                    .foregroundColor(.white)
+                    .frame(width: geo.size.width/2, height: geo.size.width/2)
+            }
         }
+        
         VStack(alignment: .leading, spacing: 0) {
             Rectangle()
                 .foregroundColor(Color.gray.opacity(0.4))
                 .frame(maxWidth: .infinity, maxHeight: 1)
             HStack {
-                Image(systemName: alreadyliked ? "heart.fill": "heart")
+                Image(systemName: alreadyLiked ? "heart.fill": "heart")
                     .resizable()
                     .scaledToFit()
                     .fixedSize()
-                    .foregroundColor(alreadyliked ? .red: .black)
-                    .onTapGesture {
-                        if alreadyliked == false {
-                        likes += 1
-                        } else {
-                            likes -= 1
-                        }
-                        alreadyliked.toggle()
-                    }
+                    .foregroundColor(alreadyLiked ? .red : currentMode == .dark ? .white : .black)
+                    .onTapGesture { like() }
                 if post.showComments { Image(systemName: "bubble.left") }
                 if post.showLikes { Text("Likes: \(likes)") }
             }
@@ -82,6 +74,15 @@ struct HomePostsView: View {
             if post.caption != "" { Text("\(user.username): \(post.caption)").padding(.leading).padding(.bottom) }
         }
     }
+    func like() {
+        if !alreadyLiked {
+            likes += 1
+        } else {
+            likes -= 1
+        }
+        alreadyLiked.toggle()
+    }
 }
+
 
 

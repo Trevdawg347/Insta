@@ -8,10 +8,37 @@
 import SwiftUI
 
 struct MessageView: View {
+    
+    @State private var search: String = ""
+    
     var body: some View {
-        Text("Message View")
+        VStack {
+            VStack {
+                TextField("Search...", text: $search)
+                    .padding(7)
+                    .padding(.horizontal, 25)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 17)
+                    .disableAutocorrection(true)
+                    .overlay(
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.gray)
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 17)
+                            .padding(.vertical, 17)
+                )
+            }
+            Rectangle()
+                .foregroundColor(Color.gray.opacity(0.4))
+                .frame(maxWidth: .infinity, maxHeight: 1)
+                .padding(.top, 73)
+            Spacer()
+        }
     }
 }
+
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {

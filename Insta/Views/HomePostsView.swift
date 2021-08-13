@@ -11,6 +11,8 @@ struct HomePostsView: View {
     
     @EnvironmentObject var user: User
     @State var post: Posts
+    @State private var likes:Int = 0
+    @State private var alreadyliked = Bool()
     var geo: GeometryProxy
     
     var body: some View {
@@ -36,23 +38,45 @@ struct HomePostsView: View {
         }
         
         
-        Image(uiImage: post.image)
-            .resizable()
-            .scaledToFill()
-            .frame(maxWidth: .infinity)
-            .frame(height: geo.size.width)
-            .clipped()
+        ZStack {
+            Image(uiImage: post.image)
+                .resizable()
+                .scaledToFill()
+                .frame(maxWidth: .infinity)
+                .frame(height: geo.size.width)
+                .clipped()
+            Image(systemName: "heart.fill")
+                .resizable()
+                .foregroundColor(alreadyliked ? .red: .clear)
+                .onTapGesture(count: 2) {
+                    if alreadyliked == false {
+                        likes += 1
+                    } else {
+                        likes -= 1
+                    }
+                    alreadyliked.toggle()
+                }
+        }
         VStack(alignment: .leading, spacing: 0) {
             Rectangle()
                 .foregroundColor(Color.gray.opacity(0.4))
                 .frame(maxWidth: .infinity, maxHeight: 1)
             HStack {
-                Image(systemName: "heart")
+                Image(systemName: alreadyliked ? "heart.fill": "heart")
                     .resizable()
                     .scaledToFit()
                     .fixedSize()
+                    .foregroundColor(alreadyliked ? .red: .black)
+                    .onTapGesture {
+                        if alreadyliked == false {
+                        likes += 1
+                        } else {
+                            likes -= 1
+                        }
+                        alreadyliked.toggle()
+                    }
                 if post.showComments { Image(systemName: "bubble.left") }
-                if post.showLikes { Text("0 Likes") }
+                if post.showLikes { Text("Likes: \(likes)") }
             }
             .padding()
             if post.caption != "" { Text("\(user.username): \(post.caption)").padding(.leading).padding(.bottom) }

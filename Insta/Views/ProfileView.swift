@@ -34,8 +34,9 @@ struct ProfileBarView: View {
                         Image(uiImage: image!)
                             .resizable()
                             .frame(width: 90, height: 90)
-                            .scaledToFill()
                             .clipShape(Circle())
+                            .scaledToFit()
+                            
                     }
                 })
                 

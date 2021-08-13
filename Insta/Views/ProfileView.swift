@@ -33,10 +33,10 @@ struct ProfileBarView: View {
                     } else {
                         Image(uiImage: image!)
                             .resizable()
-                            .frame(width: 90, height: 90)
+                            .scaledToFill()
+                            .frame(width: 90, height: 90)	
+                            .clipped()
                             .clipShape(Circle())
-                            .scaledToFit()
-                            
                     }
                 })
                 

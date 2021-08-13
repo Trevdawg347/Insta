@@ -11,6 +11,7 @@ struct MessageView: View {
     
     @State private var search: String = ""
     @EnvironmentObject var user: User
+    @State var selection: String? = ""
     
     var body: some View {
         VStack {
@@ -33,7 +34,9 @@ struct MessageView: View {
                 .foregroundColor(Color.gray.opacity(0.4))
                 .frame(maxWidth: .infinity, maxHeight: 1)
             Spacer()
+            
             VStack {
+                NavigationLink(destination: chatScreen(), tag: "chat", selection: $selection, label: {})
                 HStack {
                     if user.profileImage == UIImage() {
                         Image(systemName: "person.circle.fill")
@@ -57,6 +60,9 @@ struct MessageView: View {
                         .foregroundColor(.gray)
                         .padding()
                 }.padding()
+                .onTapGesture {
+                    selection = "chat"
+                }
             }
             Spacer()
         }
@@ -65,10 +71,17 @@ struct MessageView: View {
     }
 }
 
+struct chatScreen: View {
+    var body: some View {
+        Text("sup")
+    }
+}
+
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
         MessageView()
             .environmentObject(User())
+        chatScreen()
     }
 }

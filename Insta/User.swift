@@ -15,6 +15,7 @@ class User: ObservableObject {
     @Published var lastName = ""
     
     @Published var posts: [Posts] = []
+    @Published var profileImage = UIImage()
 }
 
 struct Posts: Identifiable {
@@ -23,7 +24,7 @@ struct Posts: Identifiable {
     var caption: String
     var showComments: Bool
     var showLikes: Bool
-    var profileImage: UIImage
+
 }
 
 #if canImport(UIKit)

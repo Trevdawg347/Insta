@@ -36,7 +36,9 @@ struct ProfileBarView: View {
                             .frame(width: 90, height: 90)
                             .clipShape(Circle())
                             .scaledToFit()
-                            
+                            .onAppear() {
+                                user.profileImage = image!
+                            }
                     }
                 })
                 

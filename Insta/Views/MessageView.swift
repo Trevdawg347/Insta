@@ -33,13 +33,35 @@ struct MessageView: View {
                 .foregroundColor(Color.gray.opacity(0.4))
                 .frame(maxWidth: .infinity, maxHeight: 1)
             Spacer()
-            ForEach(user.posts) { post in
-                Image(uiImage: post.image)
+            VStack {
+                HStack {
+                    if user.profileImage == UIImage() {
+                        Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                    } else {
+                        Image(uiImage: user.profileImage)
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .clipShape(Circle())
+                    }
+                    VStack {
+                        Text(user.username)
+                            .font(.headline)
+                        Text("Tap to chat")
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                    }
+                    Spacer()
+                    Image(systemName: "camera")
+                        .foregroundColor(.gray)
+                        .padding()
+                }.padding()
             }
             Spacer()
         }
-        
-        
+        .navigationTitle("Message")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
